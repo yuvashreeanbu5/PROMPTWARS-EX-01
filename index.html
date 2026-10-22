@@ -3,61 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nexora Arena — Learn, Solve, Compete, FAANG Resume &amp; MNC Prep</title>
-  <meta name="description" content="Free engineering learning, 300-problem timed Code Arena, FAANG/MANGOS Overleaf resume builder, and MNC placement preparation platform." />
-
-  <!-- React 18 Production CDN + Babel Standalone (Zero Build Step Required on Vercel) -->
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-  <!-- Load your local data files (works with both ./ and /) -->
-  <script src="./questions.js"></script>
-  <script src="./problems.js"></script>
-
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com; worker-src blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com wss://*.firebaseio.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self';"
+  />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Home — Prompt Wash Arena (Nexora Arena)</title>
+  <meta
+    name="description"
+    content="Free engineering learning, 300-problem timed Code Arena, FAANG/MANGOS Overleaf resume builder, and MNC placement preparation platform."
+  />
   <style>
     :root {
       --bg-main: #050914;
       --bg-card: #0c1427;
-      --bg-card-hover: #131f3a;
-      --bg-elevated: #101b35;
-      --border: #1e2f58;
-      --border-light: #2d457d;
+      --bg-card-hover: #13203d;
+      --bg-elevated: #111d38;
+      --border: #2a4073;
       --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --grad-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 55%, #ec4899 100%);
-      --grad-surface: linear-gradient(180deg, rgba(30, 47, 88, 0.35) 0%, rgba(12, 20, 39, 0.9) 100%);
-      --radius: 14px;
+      --text-muted: #cbd5e1;
+      --accent-blue: #60a5fa;
+      --accent-green: #34d399;
+      --accent-orange: #fbbf24;
+      --accent-red: #f87171;
+      --grad-primary: linear-gradient(135deg, #2563eb 0%, #7c3aed 55%, #db2777 100%);
+      --radius: 12px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { overflow-y: scroll; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      overflow-y: scroll;
+      font-size: 100%;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--bg-main);
-      background-image: radial-gradient(circle at 15% 0%, rgba(59, 130, 246, 0.10), transparent 40%),
-                        radial-gradient(circle at 85% 5%, rgba(139, 92, 246, 0.10), transparent 40%);
       color: var(--text-main);
-      line-height: 1.55;
+      line-height: 1.6;
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    ::-webkit-scrollbar { width: 8px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #050914; }
-    ::-webkit-scrollbar-thumb { background: #1e2f58; border-radius: 999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      background: #2563eb;
+      color: #ffffff;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      z-index: 9999;
+      text-decoration: none;
+    }
 
-    a { color: #93c5fd; text-decoration: none; }
+    .skip-link:focus {
+      top: 0.75rem;
+      outline: 3px solid #fbbf24;
+    }
+
+    a {
+      color: #93c5fd;
+      text-decoration: underline;
+    }
+
     button {
       font-family: inherit;
       cursor: pointer;
-      border: none;
-      border-radius: 9px;
-      min-height: 36px;
-      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      min-height: 38px;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: var(--bg-elevated);
+      color: var(--text-main);
     }
-    button:active { transform: translateY(1px); }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    h1:focus-visible {
+      outline: 3px solid #60a5fa;
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background: var(--grad-primary);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .btn-secondary {
+      background: var(--bg-elevated);
+      color: #f8fafc;
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-blue);
+    }
 
     .gradient-text {
       background: var(--grad-primary);
@@ -67,430 +121,2161 @@
       font-weight: 800;
     }
 
-    /* Single-Row Sticky Navbar */
+    /* Single-Row Header */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background-color: rgba(7, 12, 26, 0.96);
+      background-color: #070d1f;
       border-bottom: 1px solid var(--border);
-      height: 62px;
-      display: flex;
-      align-items: center;
-      padding: 0 1rem;
+      padding: 0.45rem 1rem;
     }
+
     .navbar-inner {
-      width: 100%;
       max-width: 1440px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0.65rem;
+      gap: 0.6rem;
       flex-wrap: nowrap;
     }
-    .brand {
-      display: flex;
+
+    .brand-btn {
+      display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-size: 1.05rem;
+      background: transparent;
+      border: none;
+      font-size: 1rem;
       font-weight: 800;
-      cursor: pointer;
+      color: var(--text-main);
       white-space: nowrap;
       flex-shrink: 0;
     }
+
     .brand-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 9px;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
       background: var(--grad-primary);
       display: grid;
       place-items: center;
-      font-size: 0.95rem;
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
     }
+
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 0.22rem;
-      flex-wrap: nowrap;
+      gap: 0.25rem;
       overflow-x: auto;
-      scrollbar-width: none;
+      flex-wrap: nowrap;
+      scrollbar-width: thin;
       background: #0a1224;
       border: 1px solid var(--border);
       padding: 0.25rem;
-      border-radius: 11px;
-      flex: 1;
-      max-width: fit-content;
+      border-radius: 10px;
     }
-    .nav-links::-webkit-scrollbar { display: none; }
+
     .nav-btn {
       background: transparent;
       color: var(--text-muted);
-      padding: 0.34rem 0.62rem;
-      font-size: 0.77rem;
-      font-weight: 600;
-      border-radius: 8px;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.78rem;
       min-height: 32px;
       white-space: nowrap;
       flex-shrink: 0;
     }
-    .nav-btn:hover { color: #fff; background: #13203d; }
-    .nav-btn.active {
-      color: #fff;
-      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
+
+    .nav-btn[aria-current="page"] {
+      background: #2563eb;
+      color: #ffffff;
     }
+
     .auth-zone {
       display: flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.5rem;
       white-space: nowrap;
       flex-shrink: 0;
       background: #0a1224;
       border: 1px solid var(--border);
-      padding: 0.24rem 0.3rem;
+      padding: 0.25rem 0.5rem;
       border-radius: 999px;
-    }
-    .score-chip {
-      font-size: 0.75rem;
-      font-weight: 800;
-      color: #60a5fa;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      padding-left: 0.45rem;
-    }
-    .user-chip {
-      font-size: 0.76rem;
-      font-weight: 600;
-      color: #e2e8f0;
-      max-width: 120px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      border-left: 1px solid var(--border);
-      padding-left: 0.45rem;
-    }
-
-    .btn-primary {
-      background: var(--grad-primary);
-      color: #fff;
-      font-weight: 700;
-      padding: 0.45rem 1rem;
-      font-size: 0.82rem;
-      border-radius: 9px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.35rem;
-    }
-    .btn-primary:hover { opacity: 0.94; }
-    .btn-secondary {
-      background: var(--bg-elevated);
-      color: #f1f5f9;
-      border: 1px solid var(--border);
-      padding: 0.42rem 0.88rem;
-      font-size: 0.81rem;
-      font-weight: 600;
-      border-radius: 9px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.35rem;
-    }
-    .btn-secondary:hover { background: var(--bg-card-hover); border-color: #60a5fa; }
-    .btn-locked {
-      background: #0b1224;
-      color: #94a3b8;
-      border: 1px dashed #475569;
-      padding: 0.42rem 0.85rem;
-      font-size: 0.81rem;
-      cursor: not-allowed;
     }
 
     .container {
-      max-width: 1280px;
+      max-width: 1260px;
       margin: 0 auto;
-      padding: 1.5rem 1.25rem 5rem;
+      padding: 1.5rem 1.25rem 4rem;
     }
 
-    .home-hero-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 0.9fr;
-      gap: 1.25rem;
-      background: var(--grad-surface);
-      border: 1px solid var(--border-light);
-      border-radius: 20px;
-      padding: 2.2rem;
-      margin-bottom: 1.35rem;
-      align-items: center;
+    .page-section {
+      display: none;
     }
-    @media (max-width: 940px) {
-      .home-hero-grid { grid-template-columns: 1fr; padding: 1.5rem; }
+
+    .page-section.active {
+      display: block;
     }
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.28rem 0.75rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      background: rgba(59, 130, 246, 0.15);
-      color: #93c5fd;
-      border: 1px solid rgba(59, 130, 246, 0.35);
-      margin-bottom: 0.85rem;
-    }
-    .hero-title {
-      font-size: clamp(1.9rem, 3.3vw, 2.75rem);
-      line-height: 1.15;
-      font-weight: 800;
-      margin-bottom: 0.75rem;
-    }
-    .hero-sub {
-      color: var(--text-muted);
-      font-size: 0.96rem;
-      max-width: 620px;
-      margin-bottom: 1.35rem;
-    }
-    .hero-cta-row { display: flex; gap: 0.65rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
-    .hero-trust-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-    .trust-pill {
-      font-size: 0.74rem;
-      color: #cbd5e1;
-      background: rgba(15, 23, 42, 0.75);
-      border: 1px solid var(--border);
-      padding: 0.25rem 0.65rem;
-      border-radius: 8px;
-    }
-    .hero-command-card {
-      background: #081022;
-      border: 1px solid var(--border-light);
-      border-radius: 16px;
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-    .cmd-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #0d1832;
-      border: 1px solid var(--border);
-      padding: 0.65rem 0.85rem;
+
+    .banner-alert {
+      display: none;
+      background: #451a03;
+      border: 2px solid #f59e0b;
+      color: #fef3c7;
+      padding: 0.85rem 1.1rem;
+      margin: 0.75rem auto;
+      max-width: 1260px;
       border-radius: 10px;
-      cursor: pointer;
+      font-weight: 600;
     }
-    .cmd-row:hover { border-color: #60a5fa; background: #132246; }
 
-    .stats-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.9rem;
-      margin-bottom: 1.5rem;
-    }
-    @media (max-width: 780px) { .stats-strip { grid-template-columns: repeat(2, 1fr); } }
-    .stat-card {
+    .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1rem 1.1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-    }
-    .stat-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      background: rgba(59, 130, 246, 0.14);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      display: grid;
-      place-items: center;
-      font-size: 1.2rem;
-    }
-    .stat-val { font-size: 1.35rem; font-weight: 800; }
-
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.6rem;
-    }
-    @media (max-width: 980px) { .bento-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 640px) { .bento-grid { grid-template-columns: 1fr; } }
-    .bento-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 0.9rem;
-    }
-    .bento-card:hover { border-color: #3b82f6; background: #0f1a33; }
-    .bento-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.55rem; }
-    .bento-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: #13203d;
-      border: 1px solid var(--border-light);
-      display: grid;
-      place-items: center;
-      font-size: 1.1rem;
-    }
-
-    .workflow-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.85rem;
-      background: #081022;
-      border: 1px solid var(--border);
-      border-radius: 16px;
       padding: 1.15rem;
-    }
-    @media (max-width: 860px) { .workflow-strip { grid-template-columns: repeat(2, 1fr); } }
-    .workflow-step {
-      padding: 0.7rem;
-      border-left: 3px solid #3b82f6;
-      background: #0c162e;
-      border-radius: 0 10px 10px 0;
+      margin-bottom: 1rem;
     }
 
     .grid-cards {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 0.95rem;
+      gap: 1rem;
     }
-    .card {
+
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.9rem;
+      margin: 1.25rem 0;
+    }
+
+    .stat-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.1rem;
+      padding: 1rem;
+      text-align: center;
     }
-    .single-col-list { display: flex; flex-direction: column; gap: 0.55rem; }
+
+    .stat-val {
+      font-size: 1.45rem;
+      font-weight: 800;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .badge-easy {
+      background: #064e3b;
+      color: #a7f3d0;
+      border: 1px solid #10b981;
+    }
+
+    .badge-medium {
+      background: #78350f;
+      color: #fde68a;
+      border: 1px solid #f59e0b;
+    }
+
+    .badge-hard {
+      background: #7f1d1d;
+      color: #fecaca;
+      border: 1px solid #ef4444;
+    }
+
+    .badge-info {
+      background: #1e3a8a;
+      color: #dbeafe;
+      border: 1px solid #60a5fa;
+    }
+
+    .input-control,
+    select.input-control,
+    textarea.input-control {
+      background: #070d1f;
+      border: 1px solid var(--border);
+      color: #ffffff;
+      padding: 0.5rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      min-height: 40px;
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-bottom: 0.3rem;
+    }
+
+    fieldset {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    legend {
+      padding: 0 0.5rem;
+      font-weight: 700;
+      color: #93c5fd;
+      font-size: 0.88rem;
+    }
+
+    .code-editor {
+      width: 100%;
+      min-height: 210px;
+      background: #030712;
+      color: #a7f3d0;
+      border: 1px solid #3b82f6;
+      border-radius: 10px;
+      padding: 0.9rem;
+      font-family: Consolas, monospace;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      resize: vertical;
+    }
+
+    pre.code-block {
+      background: #030712;
+      color: #dbeafe;
+      padding: 0.85rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      font-size: 0.84rem;
+      margin: 0.6rem 0;
+    }
+
+    .single-col-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
     .single-row-item {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 0.75rem 1rem;
+      padding: 0.8rem 1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 0.75rem;
       flex-wrap: wrap;
     }
-    .fixed-pane-scroll {
-      height: 390px;
-      overflow-y: auto;
-      padding-right: 0.35rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      padding: 0.18rem 0.6rem;
-      border-radius: 999px;
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
-    .badge-easy { background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.45); }
-    .badge-medium { background: rgba(245, 158, 11, 0.18); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.45); }
-    .badge-hard { background: rgba(239, 68, 68, 0.18); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.45); }
-    .badge-info { background: rgba(59, 130, 246, 0.18); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); }
 
     .progress-wrap {
       width: 100%;
-      height: 7px;
+      height: 8px;
       background: #1e293b;
       border-radius: 999px;
       overflow: hidden;
-      margin: 0.38rem 0;
+      margin: 0.4rem 0;
     }
-    .progress-fill { height: 100%; background: var(--grad-primary); }
 
-    .input-control {
-      background: #070d1f;
-      border: 1px solid var(--border);
-      color: #fff;
-      padding: 0.48rem 0.8rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      min-height: 38px;
-      width: 100%;
+    .progress-fill {
+      height: 100%;
+      background: var(--grad-primary);
     }
-    .code-editor {
-      width: 100%;
-      min-height: 200px;
-      background: #050914;
-      color: #a7f3d0;
-      border: 1px solid #3b4f8a;
-      border-radius: 10px;
-      padding: 0.85rem;
-      font-family: Consolas, monospace;
-      font-size: 0.85rem;
-      line-height: 1.5;
-      resize: vertical;
-    }
-    pre.code-block {
-      background: #050914;
-      color: #bfdbfe;
-      padding: 0.85rem;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      overflow-x: auto;
-      font-family: Consolas, monospace;
-      font-size: 0.81rem;
-      margin: 0.5rem 0;
-    }
+
     table.lb-table {
       width: 100%;
       border-collapse: collapse;
       background: var(--bg-card);
+      border: 1px solid var(--border);
       border-radius: 10px;
       overflow: hidden;
-      border: 1px solid var(--border);
     }
-    table.lb-table th, table.lb-table td {
-      padding: 0.7rem 0.9rem;
+
+    table.lb-table caption {
+      text-align: left;
+      font-weight: 700;
+      padding: 0.75rem 1rem;
+      color: #93c5fd;
+      background: #081022;
+    }
+
+    table.lb-table th,
+    table.lb-table td {
+      padding: 0.75rem 1rem;
       text-align: left;
       border-bottom: 1px solid #1e293b;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
     }
-    table.lb-table tr.me-row { background: rgba(59, 130, 246, 0.22); font-weight: 700; }
 
-    /* Clean Sign-In Modal for Vercel if Domain Not Whitelisted Yet */
+    table.lb-table tr.me-row {
+      background: rgba(37, 99, 235, 0.28);
+      font-weight: 700;
+    }
+
+    /* Accessible Modal Dialog */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(3, 7, 18, 0.82);
+      background: rgba(3, 7, 18, 0.85);
       z-index: 2000;
-      display: grid;
+      display: none;
       place-items: center;
       padding: 1rem;
     }
-    .modal-card {
+
+    .modal-backdrop.open {
+      display: grid;
+    }
+
+    .modal-dialog {
       background: #0c1427;
-      border: 1px solid #3b82f6;
+      border: 2px solid #60a5fa;
       border-radius: 16px;
-      width: min(420px, 100%);
+      max-width: 560px;
+      width: 100%;
       padding: 1.5rem;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Companion & AI Tutor */
+    .pet-pill {
+      position: fixed;
+      bottom: 12px;
+      left: 12px;
+      z-index: 950;
+      background: #0c1427;
+      border: 1px solid #60a5fa;
+      border-radius: 999px;
+      padding: 0.35rem 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.78rem;
+      color: #f8fafc;
+    }
+
+    .pet-bounce {
+      display: inline-block;
+      animation: gentleBounce 2.4s infinite ease-in-out;
+    }
+
+    .pet-paused .pet-bounce {
+      animation-play-state: paused;
+    }
+
+    @keyframes gentleBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    #ai-fab {
+      position: fixed;
+      bottom: 12px;
+      right: 14px;
+      z-index: 990;
+      border-radius: 999px;
+      padding: 0.6rem 1.1rem;
+    }
+
+    #ai-chat-panel {
+      position: fixed;
+      bottom: 64px;
+      right: 14px;
+      width: min(390px, calc(100vw - 28px));
+      height: 450px;
+      background: var(--bg-card);
+      border: 2px solid #8b5cf6;
+      border-radius: 14px;
+      z-index: 995;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    #ai-chat-panel.open {
+      display: flex;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 0.85rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .msg-bubble {
+      padding: 0.55rem 0.8rem;
+      border-radius: 10px;
+      font-size: 0.84rem;
+      max-width: 90%;
+      word-wrap: break-word;
+    }
+
+    .msg-user {
+      background: #1d4ed8;
+      color: #ffffff;
+      align-self: flex-end;
+    }
+
+    .msg-ai {
+      background: #1e293b;
+      color: #f8fafc;
+      align-self: flex-start;
+      border: 1px solid var(--border);
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      background: #070d1f;
     }
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <div id="root"></div>
+  <div id="diagnostic-banner" class="banner-alert" role="alert" aria-live="assertive"></div>
+  <div id="global-error-banner" class="banner-alert" role="alert" aria-live="polite"></div>
 
-  <!-- Firebase Module Bridge (Connects Firebase v10 to React cleanly on Vercel) -->
+  <header class="navbar" role="banner">
+    <div class="navbar-inner">
+      <button type="button" class="brand-btn" data-action="nav" data-page="home" aria-label="Prompt Wash Arena Home">
+        <span class="brand-logo" aria-hidden="true">⚡</span>
+        <span>Nexora <span class="gradient-text">Arena</span></span>
+      </button>
+
+      <nav class="nav-links" role="navigation" aria-label="Primary Navigation">
+        <button type="button" class="nav-btn" data-action="nav" data-page="home" aria-current="page">Home</button>
+        <button type="button" class="nav-btn" data-action="nav" data-page="learn">Learn</button>
+        <button type="button" class="nav-btn" data-action="nav" data-page="roadmaps">Roadmaps</button>
+        <button type="button" class="nav-btn" data-action="nav" data-page="arena">Code Arena</button>
+        <button type="button" class="nav-btn" data-action="nav" data-page="placements">MNC Prep</button>
+        <button type="button" class="nav-btn" data-action="nav" data-page="resume">Resume</button>
+        <button type="button" class="nav-btn" data-action="nav" data-page="studio">Projects</button>
+        <button type="button" class="nav-btn" data-action="nav" data-page="community">Community</button>
+        <button type="button" class="nav-btn" data-action="nav" data-page="certified">Get Certified</button>
+        <button type="button" class="nav-btn" data-action="nav" data-page="mycerts">My Certs</button>
+        <button type="button" class="nav-btn" data-action="nav" data-page="vault">My Activity</button>
+        <button type="button" class="nav-btn" data-action="nav" data-page="leaderboard">Leaderboard</button>
+      </nav>
+
+      <div class="auth-zone">
+        <span id="user-score-pill" class="badge badge-info" style="display:none;" aria-live="polite">0 pts</span>
+        <span id="user-name-label" style="font-size:0.8rem;font-weight:700;display:none;"></span>
+        <button type="button" id="auth-btn" class="btn-primary" data-action="auth-toggle">Sign in</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="container" role="main">
+    <!-- 1. HOME -->
+    <section id="page-home" class="page-section active" aria-labelledby="heading-home">
+      <div class="card" style="padding:2rem;">
+        <span class="badge badge-info">✨ All-In-One Engineering, Coding &amp; Placement Ecosystem</span>
+        <h1 id="heading-home" tabindex="-1" style="font-size:clamp(1.8rem,3vw,2.6rem);margin:0.6rem 0;">
+          Learn Concepts. Solve Problems. <span class="gradient-text">Crack Top MNC Placements.</span>
+        </h1>
+        <p style="color:var(--text-muted);max-width:680px;margin-bottom:1.2rem;">
+          Master 11+ core tracks with interactive diagrams and 8 graded MCQs per subtopic, solve 300 timed Code Arena problems inside a sandboxed Web Worker, and earn verifiable completion certificates.
+        </p>
+        <div style="display:flex;gap:0.65rem;flex-wrap:wrap;">
+          <button type="button" class="btn-primary" data-action="nav" data-page="learn">Start Learning Free →</button>
+          <button type="button" class="btn-secondary" data-action="nav" data-page="arena">Open Code Arena</button>
+          <button type="button" class="btn-secondary" data-action="nav" data-page="leaderboard">View Leaderboard</button>
+        </div>
+      </div>
+
+      <div class="stats-strip" aria-label="Platform Statistics">
+        <div class="stat-card">
+          <div class="stat-val gradient-text">11+ Tracks</div>
+          <div>Structured Learning Domains</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val gradient-text">300 Problems</div>
+          <div>Web Worker Sandboxed Arena</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val gradient-text">1,800+ MCQs</div>
+          <div>MNC Placement Question Bank</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val gradient-text" id="home-user-status">Guest Mode</div>
+          <div id="home-user-sub">Sign in to sync your live score</div>
+        </div>
+      </div>
+
+      <div class="grid-cards">
+        <article class="card">
+          <span class="badge badge-info">STEP 1 • LEARN</span>
+          <h2 style="font-size:1.15rem;margin:0.4rem 0;">Interactive Tracks &amp; 8-MCQ Quizzes</h2>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:0.8rem;">
+            Study Java Basics, Python, C, DSA, SQL, and AI with SVG diagrams and 8 graded questions per subtopic.
+          </p>
+          <button type="button" class="btn-primary" data-action="nav" data-page="learn">Open Learn Hub</button>
+        </article>
+
+        <article class="card">
+          <span class="badge badge-easy">STEP 2 • PRACTICE</span>
+          <h2 style="font-size:1.15rem;margin:0.4rem 0;">300-Problem Sandboxed Code Arena</h2>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:0.8rem;">
+            Run code against 5–8 deterministic hidden tests inside a 3-second isolated Web Worker.
+          </p>
+          <button type="button" class="btn-primary" data-action="nav" data-page="arena">Enter Code Arena</button>
+        </article>
+
+        <article class="card">
+          <span class="badge badge-medium">STEP 3 • PLACEMENTS</span>
+          <h2 style="font-size:1.15rem;margin:0.4rem 0;">MNC Prep &amp; Overleaf Resume</h2>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:0.8rem;">
+            Practice company-wise questions and export your single-column Overleaf LaTeX resume.
+          </p>
+          <button type="button" class="btn-primary" data-action="nav" data-page="placements">Open MNC Prep</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- 2. LEARN -->
+    <section id="page-learn" class="page-section" aria-labelledby="heading-learn">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:0.75rem;margin-bottom:1rem;">
+        <div>
+          <h1 id="heading-learn" tabindex="-1">Interactive Learning Hub</h1>
+          <p style="color:var(--text-muted);font-size:0.86rem;">Complete all subtopic quizzes in a track to unlock your verifiable Certificate.</p>
+        </div>
+        <div style="display:flex;gap:0.5rem;align-items:flex-end;flex-wrap:wrap;">
+          <div>
+            <label for="learn-search">Search Tracks</label>
+            <input id="learn-search" type="search" class="input-control" style="width:220px;" placeholder="e.g., Java, Python, SQL..." />
+          </div>
+          <button type="button" id="back-to-tracks-btn" class="btn-secondary" style="display:none;" data-action="close-track">← All Tracks</button>
+        </div>
+      </div>
+      <div id="learn-tracks-grid" class="grid-cards"></div>
+      <div id="learn-workspace" style="display:none;"></div>
+    </section>
+
+    <!-- 3. ROADMAPS -->
+    <section id="page-roadmaps" class="page-section" aria-labelledby="heading-roadmaps">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:0.75rem;margin-bottom:1rem;">
+        <div>
+          <h1 id="heading-roadmaps" tabindex="-1">Step-by-Step Domain Roadmaps</h1>
+          <p style="color:var(--text-muted);font-size:0.86rem;">Stage-by-stage curriculum guides and curated video lectures.</p>
+        </div>
+        <div>
+          <label for="roadmap-select">Select Domain Roadmap</label>
+          <select id="roadmap-select" class="input-control" style="width:250px;"></select>
+        </div>
+      </div>
+      <div id="roadmap-detail-container"></div>
+    </section>
+
+    <!-- 4. CODE ARENA -->
+    <section id="page-arena" class="page-section" aria-labelledby="heading-arena">
+      <div style="margin-bottom:1rem;">
+        <h1 id="heading-arena" tabindex="-1">Code Arena — 300 Timed Problems</h1>
+        <p style="color:var(--text-muted);font-size:0.86rem;">
+          100 Easy (10 pts) • 100 Medium (25 pts) • 100 Hard (50 pts). Executed inside an isolated Web Worker with a 3-second timeout.
+        </p>
+      </div>
+
+      <fieldset>
+        <legend>Filter Code Arena Problems</legend>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.75rem;">
+          <div>
+            <label for="arena-diff-filter">Difficulty Level</label>
+            <select id="arena-diff-filter" class="input-control">
+              <option value="ALL">All Levels (300)</option>
+              <option value="Easy">Easy (100 • 10 pts)</option>
+              <option value="Medium">Medium (100 • 25 pts)</option>
+              <option value="Hard">Hard (100 • 50 pts)</option>
+            </select>
+          </div>
+          <div>
+            <label for="arena-status-filter">Completion Status</label>
+            <select id="arena-status-filter" class="input-control">
+              <option value="ALL">All Status</option>
+              <option value="SOLVED">Solved ✓</option>
+              <option value="UNSOLVED">Unsolved</option>
+            </select>
+          </div>
+          <div>
+            <label for="arena-search">Search by Title or Topic</label>
+            <input id="arena-search" type="search" class="input-control" placeholder="Search 300 problems..." />
+          </div>
+        </div>
+      </fieldset>
+
+      <div id="arena-problem-workspace" class="card" style="display:none;border-color:#60a5fa;"></div>
+      <div id="arena-single-column-list" class="single-col-list"></div>
+      <div id="arena-load-more-wrap" style="text-align:center;margin-top:1rem;"></div>
+    </section>
+
+    <!-- 5. MNC PREP -->
+    <section id="page-placements" class="page-section" aria-labelledby="heading-placements">
+      <h1 id="heading-placements" tabindex="-1" style="margin-bottom:0.5rem;">MNC Placement Question Bank</h1>
+      <fieldset>
+        <legend>Filter Company &amp; Difficulty</legend>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.75rem;">
+          <div>
+            <label for="mnc-filter-company">Target Company</label>
+            <select id="mnc-filter-company" class="input-control"></select>
+          </div>
+          <div>
+            <label for="mnc-filter-role">Target Role</label>
+            <select id="mnc-filter-role" class="input-control"></select>
+          </div>
+          <div>
+            <label for="mnc-filter-lang">Language</label>
+            <select id="mnc-filter-lang" class="input-control"></select>
+          </div>
+          <div>
+            <label for="mnc-filter-diff">Difficulty Level</label>
+            <select id="mnc-filter-diff" class="input-control">
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+      <div id="mnc-questions-list" class="single-col-list"></div>
+    </section>
+
+    <!-- 6. RESUME -->
+    <section id="page-resume" class="page-section" aria-labelledby="heading-resume">
+      <h1 id="heading-resume" tabindex="-1" style="margin-bottom:0.5rem;">FAANG Overleaf LaTeX Resume Generator</h1>
+      <div class="card">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.75rem;margin-bottom:0.8rem;">
+          <div>
+            <label for="res-name">Full Name</label>
+            <input id="res-name" class="input-control" value="Student Name" />
+          </div>
+          <div>
+            <label for="res-contact">Email &amp; Phone</label>
+            <input id="res-contact" class="input-control" value="student@university.edu | +91 98765 43210" />
+          </div>
+          <div>
+            <label for="res-college">College &amp; CGPA</label>
+            <input id="res-college" class="input-control" value="B.E. / B.Tech Computer Science | CGPA: 9.0/10" />
+          </div>
+          <div>
+            <label for="res-skills">Technical Skills</label>
+            <input id="res-skills" class="input-control" value="Java, Python, C, DSA, SQL, JavaScript, Firebase, Git" />
+          </div>
+        </div>
+        <button type="button" class="btn-primary" data-action="generate-resume">Generate Overleaf Code</button>
+        <button type="button" class="btn-secondary" data-action="copy-resume">Copy .tex Code</button>
+      </div>
+      <div class="card">
+        <label for="latex-resume-editor">Generated Overleaf LaTeX (.tex)</label>
+        <textarea id="latex-resume-editor" class="code-editor" readonly></textarea>
+      </div>
+    </section>
+
+    <!-- 7. PROJECTS -->
+    <section id="page-studio" class="page-section" aria-labelledby="heading-studio">
+      <h1 id="heading-studio" tabindex="-1" style="margin-bottom:0.75rem;">Day 1–Day 5 Project &amp; Prompt Studio</h1>
+      <div id="studio-projects-list" class="single-col-list"></div>
+    </section>
+
+    <!-- 8. COMMUNITY -->
+    <section id="page-community" class="page-section" aria-labelledby="heading-community">
+      <h1 id="heading-community" tabindex="-1" style="margin-bottom:0.75rem;">Student Community Discussion</h1>
+      <div class="card">
+        <div id="community-feed" class="single-col-list" style="max-height:320px;overflow-y:auto;margin-bottom:0.8rem;" aria-live="polite"></div>
+        <div>
+          <label for="community-msg-input">Your Message (Max 500 characters, signed-in users only)</label>
+          <textarea id="community-msg-input" class="input-control" rows="2" maxlength="500" placeholder="Share a tip or ask a question..."></textarea>
+          <div style="margin-top:0.5rem;display:flex;justify-content:space-between;align-items:center;">
+            <span id="community-feedback" role="status" aria-live="polite" style="font-size:0.82rem;color:#fbbf24;"></span>
+            <button type="button" class="btn-primary" data-action="post-community">Post Message</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. GET CERTIFIED -->
+    <section id="page-certified" class="page-section" aria-labelledby="heading-certified">
+      <h1 id="heading-certified" tabindex="-1" style="margin-bottom:0.4rem;">Get Certified — Free External Courses</h1>
+      <p style="color:#fde68a;font-size:0.86rem;margin-bottom:1rem;">
+        Note: These are trusted external certification providers. Complete a course on their official website to claim your credential.
+      </p>
+      <div id="certified-list-container" class="single-col-list"></div>
+    </section>
+
+    <!-- 10. MY CERTS -->
+    <section id="page-mycerts" class="page-section" aria-labelledby="heading-mycerts">
+      <h1 id="heading-mycerts" tabindex="-1" style="margin-bottom:0.75rem;">My Earned Track Certificates</h1>
+      <div id="mycerts-list" class="grid-cards"></div>
+    </section>
+
+    <!-- 11. MY ACTIVITY -->
+    <section id="page-vault" class="page-section" aria-labelledby="heading-vault">
+      <h1 id="heading-vault" tabindex="-1" style="margin-bottom:0.75rem;">My Activity &amp; Score Dashboard</h1>
+      <div id="vault-content"></div>
+    </section>
+
+    <!-- 12. LEADERBOARD -->
+    <section id="page-leaderboard" class="page-section" aria-labelledby="heading-leaderboard">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem;margin-bottom:1rem;">
+        <div>
+          <h1 id="heading-leaderboard" tabindex="-1">Live Student Leaderboard (Top 100)</h1>
+          <p style="color:var(--text-muted);font-size:0.85rem;">Real-time Firestore sync. Unsubscribes automatically when leaving this tab.</p>
+        </div>
+        <div role="group" aria-label="Leaderboard Sort Filter" style="display:flex;gap:0.4rem;">
+          <button type="button" class="btn-primary" data-action="lb-filter" data-field="score">Overall Score</button>
+          <button type="button" class="btn-secondary" data-action="lb-filter" data-field="learnScore">Learn Score</button>
+          <button type="button" class="btn-secondary" data-action="lb-filter" data-field="codeScore">Code Arena Score</button>
+        </div>
+      </div>
+      <div id="leaderboard-container" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>Prompt Wash Arena (Nexora Arena) — Built with Accessible Semantic HTML, Web Worker Sandboxing &amp; Firebase v10.</p>
+  </footer>
+
+  <!-- Accessible Certificate Modal -->
+  <div
+    id="cert-modal-backdrop"
+    class="modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cert-modal-title"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;">
+        <h2 id="cert-modal-title">Track Completion Certificate</h2>
+        <button type="button" id="cert-modal-close" class="btn-secondary" data-action="close-cert-modal" aria-label="Close Certificate Modal">✕</button>
+      </div>
+      <div id="cert-modal-body" class="card" style="text-align:center;border-color:#34d399;"></div>
+      <div style="display:flex;justify-content:flex-end;gap:0.5rem;">
+        <button type="button" class="btn-primary" data-action="print-cert">Print / Save PDF</button>
+        <button type="button" class="btn-secondary" data-action="close-cert-modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Companion Button -->
+  <button type="button" id="compact-pet-pill" class="pet-pill" data-action="cycle-pet" aria-label="Switch study companion tip">
+    <span id="pet-emoji" class="pet-bounce" aria-hidden="true">🐰</span>
+    <span id="pet-quote">"Complete 8 questions per subtopic to master each track!"</span>
+  </button>
+
+  <!-- Floating AI Tutor -->
+  <button type="button" id="ai-fab" class="btn-primary" data-action="toggle-chat" aria-expanded="false" aria-controls="ai-chat-panel">
+    <span aria-hidden="true">✨</span> Ask AI Tutor
+  </button>
+
+  <aside id="ai-chat-panel" aria-label="AI Tutor Chat">
+    <div style="padding:0.75rem 1rem;background:#111d38;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+      <strong>Friendly AI Tutor</strong>
+      <button type="button" class="btn-secondary" style="min-height:30px;padding:0.2rem 0.55rem;" data-action="toggle-chat" aria-label="Close AI Tutor">✕</button>
+    </div>
+    <div id="ai-chat-messages" class="chat-messages" aria-live="polite">
+      <div class="msg-bubble msg-ai">Hello! Sign in and ask me any programming or placement question (max 500 chars).</div>
+    </div>
+    <div style="padding:0.65rem;border-top:1px solid var(--border);display:flex;gap:0.4rem;">
+      <label for="ai-chat-input" style="position:absolute;width:1px;height:1px;overflow:hidden;">Ask AI Tutor</label>
+      <input id="ai-chat-input" class="input-control" maxlength="500" placeholder="Ask a question (signed-in only)..." />
+      <button type="button" class="btn-primary" data-action="send-chat">Send</button>
+    </div>
+  </aside>
+
+  <script src="questions.js"></script>
+  <script src="problems.js"></script>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /* =====================================================================
+         SECTION 1: NAMED CONSTANTS & CONFIGURATION
+         ===================================================================== */
+      const ARENA_PAGE_SIZE = 30;
+      const DEBOUNCE_DELAY_MS = 250;
+      const WORKER_TIMEOUT_MS = 3000;
+      const CHAT_MAX_LEN = 500;
+      const CHAT_RATE_LIMIT_MS = 3000;
+      const MAX_SCORE_DELTA = 50;
+      const POINTS_BY_LEVEL = Object.freeze({ Easy: 10, Medium: 25, Hard: 50 });
+      const AI_SYSTEM_INSTRUCTION =
+        "You are the friendly Prompt Wash Arena AI Tutor for college students. Explain programming, DSA, and placement concepts clearly in plain language with a short code example.";
+
+      /* =====================================================================
+         SECTION 2: PURE FUNCTIONS (EXPOSED AS window.PWA_CORE FOR TESTING)
+         ===================================================================== */
+
+      /**
+       * Escapes unsafe HTML characters to prevent XSS.
+       * @param {*} str
+       * @returns {string}
+       */
+      function escapeHtml(str) {
+        return String(str === undefined || str === null ? "" : str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      /**
+       * Returns the point value for a given difficulty level.
+       * @param {string} level
+       * @returns {number}
+       */
+      function getPointsForLevel(level) {
+        return POINTS_BY_LEVEL[level] || 10;
+      }
+
+      /**
+       * Validates that a question ID matches the expected alphanumeric format.
+       * @param {string} id
+       * @returns {boolean}
+       */
+      function isValidQuestionId(id) {
+        return typeof id === "string" && /^[a-z0-9_-]{3,64}$/i.test(id);
+      }
+
+      /**
+       * Pure state reducer that awards points only once per itemId.
+       * @param {Object} profile
+       * @param {string} itemId
+       * @param {number} points
+       * @param {string} categoryType
+       * @returns {{awarded: boolean, profile: Object}}
+       */
+      function awardOnce(profile, itemId, points, categoryType) {
+        const safePts = Math.max(0, Math.min(MAX_SCORE_DELTA, Number(points) || 0));
+        const solved = Array.isArray(profile.solvedIds) ? profile.solvedIds : [];
+        if (!itemId || solved.includes(itemId) || safePts <= 0) {
+          return { awarded: false, profile: Object.assign({}, profile) };
+        }
+        const next = Object.assign({}, profile, {
+          score: (Number(profile.score) || 0) + safePts,
+          learnScore: (Number(profile.learnScore) || 0) + (categoryType === "learn" ? safePts : 0),
+          codeScore: (Number(profile.codeScore) || 0) + (categoryType === "code" ? safePts : 0),
+          solvedIds: solved.concat([itemId])
+        });
+        return { awarded: true, profile: next };
+      }
+
+      /**
+       * Computes solved count, total count, and percentage for a learning track.
+       * @param {Object} track
+       * @param {Array<string>} solvedIds
+       * @returns {{solvedQ: number, totalQ: number, pct: number}}
+       */
+      function computeTrackProgress(track, solvedIds) {
+        const set = new Set(Array.isArray(solvedIds) ? solvedIds : []);
+        let totalQ = 0;
+        let solvedQ = 0;
+        const topics = (track && Array.isArray(track.topics)) ? track.topics : [];
+        for (let i = 0; i < topics.length; i++) {
+          const subs = Array.isArray(topics[i].subtopics) ? topics[i].subtopics : [];
+          for (let j = 0; j < subs.length; j++) {
+            const qs = Array.isArray(subs[j].questions) ? subs[j].questions : [];
+            for (let k = 0; k < qs.length; k++) {
+              totalQ++;
+              if (set.has(qs[k].id)) solvedQ++;
+            }
+          }
+        }
+        const pct = totalQ > 0 ? Math.round((solvedQ / totalQ) * 100) : 0;
+        return { solvedQ: solvedQ, totalQ: totalQ, pct: pct };
+      }
+
+      /**
+       * Checks whether a track is 100% completed.
+       * @param {Object} track
+       * @param {Array<string>} solvedIds
+       * @returns {boolean}
+       */
+      function isTrackCompleted(track, solvedIds) {
+        const prog = computeTrackProgress(track, solvedIds);
+        return prog.totalQ > 0 && prog.solvedQ === prog.totalQ;
+      }
+
+      /**
+       * Generates a deterministic, verifiable Certificate ID for a user and track.
+       * @param {string} uid
+       * @param {string} trackId
+       * @returns {string}
+       */
+      function generateCertificateId(uid, trackId) {
+        const raw = String(uid || "guest") + "::" + String(trackId || "track");
+        let h1 = 0x811c9dc5;
+        for (let i = 0; i < raw.length; i++) {
+          h1 ^= raw.charCodeAt(i);
+          h1 = Math.imul(h1, 0x01000193) >>> 0;
+        }
+        const cleanTrack = String(trackId || "TRK").replace(/[^a-z0-9]/gi, "").toUpperCase().slice(0, 6) || "TRK";
+        return "PWA-" + cleanTrack + "-" + h1.toString(16).toUpperCase().padStart(8, "0");
+      }
+
+      /**
+       * Validates that a YouTube URL is well-formed and uses HTTPS.
+       * @param {string} url
+       * @returns {boolean}
+       */
+      function isValidYouTubeUrl(url) {
+        if (typeof url !== "string") return false;
+        return /^https:\/\/(www\.)?(youtube\.com\/(watch\?v=|results\?search_query=|playlist\?list=)|youtu\.be\/)[A-Za-z0-9_+%&-]+$/.test(url);
+      }
+
+      /**
+       * Validates and sanitizes chat messages.
+       * @param {string} text
+       * @param {number} lastSentAt
+       * @param {number} now
+       * @returns {{valid: boolean, reason: string, clean: string}}
+       */
+      function validateChatMessage(text, lastSentAt, now) {
+        const trimmed = String(text || "").trim();
+        if (!trimmed) return { valid: false, reason: "Message cannot be empty.", clean: "" };
+        if (trimmed.length > CHAT_MAX_LEN) {
+          return { valid: false, reason: "Message exceeds 500 characters.", clean: "" };
+        }
+        if (lastSentAt && (now - lastSentAt) < CHAT_RATE_LIMIT_MS) {
+          return { valid: false, reason: "Please wait 3 seconds between messages.", clean: "" };
+        }
+        return { valid: true, reason: "", clean: trimmed };
+      }
+
+      window.PWA_CORE = Object.freeze({
+        escapeHtml: escapeHtml,
+        getPointsForLevel: getPointsForLevel,
+        isValidQuestionId: isValidQuestionId,
+        awardOnce: awardOnce,
+        computeTrackProgress: computeTrackProgress,
+        isTrackCompleted: isTrackCompleted,
+        generateCertificateId: generateCertificateId,
+        isValidYouTubeUrl: isValidYouTubeUrl,
+        validateChatMessage: validateChatMessage,
+        makeTests: window.makeTests
+      });
+
+      /* =====================================================================
+         SECTION 3: APPLICATION STATE & CACHES
+         ===================================================================== */
+
+      /**
+       * Creates a clean guest profile object.
+       * @returns {Object}
+       */
+      function createEmptyProfile() {
+        return {
+          name: "",
+          email: "",
+          score: 0,
+          learnScore: 0,
+          codeScore: 0,
+          solvedIds: [],
+          quizzesAttended: [],
+          solvedPrograms: []
+        };
+      }
+
+      const state = {
+        currentPage: "home",
+        user: null,
+        profile: createEmptyProfile(),
+        activeTrackId: null,
+        activeTopicId: null,
+        activeSubtopicId: null,
+        activeSubTab: "lesson",
+        activeProblemId: null,
+        arenaVisibleCount: ARENA_PAGE_SIZE,
+        lbFilter: "score",
+        leaderboardRows: [],
+        lbUnsubscribe: null,
+        lastChatSentAt: 0,
+        lastFocusedElement: null,
+        petIndex: 0,
+        progressCache: new Map(),
+        communityMessages: [
+          { user: "MentorJudy", text: "Welcome! Sign in to participate in discussions and earn points.", time: "Just now" }
+        ],
+        firebaseSignIn: null,
+        firebaseSignOut: null,
+        firebaseSyncScore: null,
+        firebaseSubscribeLb: null,
+        askGeminiLazy: null
+      };
+      window.PWA_STATE = state;
+
+      /* =====================================================================
+         SECTION 4: UTILITIES (ERROR DISPLAY, DEBOUNCE, SANDBOX WORKER)
+         ===================================================================== */
+
+      /**
+       * Displays a friendly error banner at the top of the page.
+       * @param {string} message
+       */
+      function showErrorBanner(message) {
+        const el = document.getElementById("global-error-banner");
+        if (!el) return;
+        el.style.display = "block";
+        el.textContent = "Notice: " + String(message || "An unexpected error occurred.");
+      }
+
+      /**
+       * Creates a debounced wrapper around a function.
+       * @param {Function} fn
+       * @param {number} delayMs
+       * @returns {Function}
+       */
+      function debounce(fn, delayMs) {
+        let timer = null;
+        return function () {
+          const args = arguments;
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            fn.apply(null, args);
+          }, delayMs);
+        };
+      }
+
+      /**
+       * Runs student JavaScript code inside an isolated Web Worker with network APIs deleted.
+       * @param {string} userCode
+       * @param {string} fnName
+       * @param {Array<Object>} tests
+       * @returns {Promise<{timedOut: boolean, error: string, results: Array<Object>}>}
+       */
+      function runCodeInWorker(userCode, fnName, tests) {
+        return new Promise(function (resolve) {
+          const workerSource = [
+            "self.onmessage = function(e) {",
+            "  delete self.fetch;",
+            "  delete self.XMLHttpRequest;",
+            "  delete self.importScripts;",
+            "  delete self.WebSocket;",
+            "  delete self.indexedDB;",
+            "  const code = e.data.code;",
+            "  const fnName = e.data.fnName;",
+            "  const tests = e.data.tests;",
+            "  try {",
+            "    const factory = new Function(code + '\\nreturn typeof ' + fnName + ' === \"function\" ? ' + fnName + ' : null;');",
+            "    const fn = factory();",
+            "    if (!fn) { self.postMessage({ error: 'Function ' + fnName + ' was not found.' }); return; }",
+            "    const results = [];",
+            "    for (let i = 0; i < tests.length; i++) {",
+            "      const copy = JSON.parse(JSON.stringify(tests[i].input));",
+            "      const actual = fn.apply(null, copy);",
+            "      const pass = JSON.stringify(actual) === JSON.stringify(tests[i].expected);",
+            "      results.push({ index: i + 1, pass: pass, actual: actual, expected: tests[i].expected });",
+            "    }",
+            "    self.postMessage({ error: '', results: results });",
+            "  } catch (err) {",
+            "    self.postMessage({ error: String(err && err.message ? err.message : err), results: [] });",
+            "  }",
+            "};"
+          ].join("\n");
+
+          const blob = new Blob([workerSource], { type: "application/javascript" });
+          const url = URL.createObjectURL(blob);
+          const worker = new Worker(url);
+
+          const timer = setTimeout(function () {
+            worker.terminate();
+            URL.revokeObjectURL(url);
+            resolve({ timedOut: true, error: "Execution timed out after 3000 ms (infinite loop protection).", results: [] });
+          }, WORKER_TIMEOUT_MS);
+
+          worker.onmessage = function (ev) {
+            clearTimeout(timer);
+            worker.terminate();
+            URL.revokeObjectURL(url);
+            resolve({
+              timedOut: false,
+              error: ev.data.error || "",
+              results: ev.data.results || []
+            });
+          };
+
+          worker.onerror = function (err) {
+            clearTimeout(timer);
+            worker.terminate();
+            URL.revokeObjectURL(url);
+            resolve({ timedOut: false, error: err.message || "Worker execution error.", results: [] });
+          };
+
+          worker.postMessage({ code: userCode, fnName: fnName, tests: tests });
+        });
+      }
+
+      /* =====================================================================
+         SECTION 5: STORAGE & SCORE SERVICES
+         ===================================================================== */
+
+      /**
+       * Loads a user's saved profile from localStorage by UID.
+       * @param {string} uid
+       * @param {string} name
+       * @param {string} email
+       * @returns {Object}
+       */
+      function loadUserProfile(uid, name, email) {
+        const base = createEmptyProfile();
+        base.name = name || "Student";
+        base.email = email || "";
+        if (!uid) return base;
+        try {
+          const raw = localStorage.getItem("nexora_profile_" + uid);
+          if (raw) {
+            return Object.assign(base, JSON.parse(raw));
+          }
+        } catch (err) {
+          showErrorBanner("Could not read local profile storage.");
+        }
+        return base;
+      }
+
+      /**
+       * Persists the signed-in user's profile to localStorage.
+       */
+      function saveUserProfile() {
+        if (!state.user || !state.user.uid) return;
+        try {
+          localStorage.setItem("nexora_profile_" + state.user.uid, JSON.stringify(state.profile));
+        } catch (err) {
+          showErrorBanner("Could not save profile to local storage.");
+        }
+      }
+
+      /**
+       * Awards points to the current user and syncs with Firestore.
+       * @param {string} itemId
+       * @param {number} pts
+       * @param {string} categoryType
+       * @param {Object} meta
+       * @returns {Promise<boolean>}
+       */
+      async function handleAwardPoints(itemId, pts, categoryType, meta) {
+        if (!state.user) {
+          showErrorBanner("Please sign in first to save your points and progress.");
+          return false;
+        }
+        const res = awardOnce(state.profile, itemId, pts, categoryType);
+        if (!res.awarded) return false;
+
+        state.profile = res.profile;
+        state.progressCache.clear();
+
+        if (categoryType === "learn" && meta && meta.quizTitle) {
+          state.profile.quizzesAttended.unshift({
+            title: meta.quizTitle,
+            points: pts,
+            date: new Date().toLocaleDateString()
+          });
+        }
+        if (categoryType === "code" && meta && meta.title) {
+          state.profile.solvedPrograms.unshift({
+            title: meta.title,
+            points: pts,
+            date: new Date().toLocaleDateString()
+          });
+        }
+
+        saveUserProfile();
+        renderHeaderAuthUI();
+
+        if (typeof state.firebaseSyncScore === "function") {
+          try {
+            await state.firebaseSyncScore(itemId, pts, categoryType, state.profile);
+          } catch (err) {
+            showErrorBanner("Saved locally; cloud sync will retry when online.");
+          }
+        }
+        return true;
+      }
+
+      /* =====================================================================
+         SECTION 6: VIEW RENDERERS
+         ===================================================================== */
+
+      /**
+       * Updates the top navigation bar auth pill and home status.
+       */
+      function renderHeaderAuthUI() {
+        const pill = document.getElementById("user-score-pill");
+        const nameLbl = document.getElementById("user-name-label");
+        const authBtn = document.getElementById("auth-btn");
+        const homeStatus = document.getElementById("home-user-status");
+        const homeSub = document.getElementById("home-user-sub");
+
+        if (state.user) {
+          const displayName = state.user.displayName || state.profile.name || "Student";
+          if (pill) {
+            pill.style.display = "inline-flex";
+            pill.textContent = (state.profile.score || 0) + " pts";
+          }
+          if (nameLbl) {
+            nameLbl.style.display = "inline-block";
+            nameLbl.textContent = displayName;
+          }
+          if (authBtn) authBtn.textContent = "Sign out";
+          if (homeStatus) homeStatus.textContent = (state.profile.score || 0) + " pts";
+          if (homeSub) homeSub.textContent = "Signed in as " + displayName;
+        } else {
+          if (pill) {
+            pill.style.display = "none";
+            pill.textContent = "";
+          }
+          if (nameLbl) {
+            nameLbl.style.display = "none";
+            nameLbl.textContent = "";
+          }
+          if (authBtn) authBtn.textContent = "Sign in";
+          if (homeStatus) homeStatus.textContent = "Guest Mode";
+          if (homeSub) homeSub.textContent = "Sign in to sync your live score";
+        }
+      }
+
+      /**
+       * Returns cached track progress for performance.
+       * @param {Object} track
+       * @returns {{solvedQ: number, totalQ: number, pct: number}}
+       */
+      function getCachedTrackProgress(track) {
+        if (!state.user) return { solvedQ: 0, totalQ: 24, pct: 0 };
+        if (state.progressCache.has(track.id)) {
+          return state.progressCache.get(track.id);
+        }
+        const computed = computeTrackProgress(track, state.profile.solvedIds);
+        state.progressCache.set(track.id, computed);
+        return computed;
+      }
+
+      /**
+       * Renders the Learn tracks grid or active track workspace.
+       */
+      function renderLearnPage() {
+        const grid = document.getElementById("learn-tracks-grid");
+        const workspace = document.getElementById("learn-workspace");
+        const backBtn = document.getElementById("back-to-tracks-btn");
+        if (!grid || !workspace || !window.QUESTION_BANK) return;
+
+        if (state.activeTrackId) {
+          grid.style.display = "none";
+          workspace.style.display = "block";
+          if (backBtn) backBtn.style.display = "inline-flex";
+          renderActiveTrackWorkspace();
+          return;
+        }
+
+        grid.style.display = "grid";
+        workspace.style.display = "none";
+        if (backBtn) backBtn.style.display = "none";
+
+        const query = (document.getElementById("learn-search")?.value || "").toLowerCase().trim();
+        const tracks = window.QUESTION_BANK.filter(function (t) {
+          return !query || t.name.toLowerCase().includes(query) || t.category.toLowerCase().includes(query);
+        });
+
+        if (tracks.length === 0) {
+          grid.innerHTML = '<div class="card"><p>No matching learning tracks found.</p></div>';
+          return;
+        }
+
+        grid.innerHTML = tracks.map(function (track) {
+          const prog = getCachedTrackProgress(track);
+          const completed = state.user && isTrackCompleted(track, state.profile.solvedIds);
+          return (
+            '<article class="card" style="display:flex;flex-direction:column;justify-content:space-between;">' +
+              '<div>' +
+                '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;">' +
+                  '<span style="font-size:1.5rem;" aria-hidden="true">' + escapeHtml(track.icon) + '</span>' +
+                  '<span class="badge badge-info">' + escapeHtml(track.category) + '</span>' +
+                '</div>' +
+                '<h2 style="font-size:1.1rem;margin-bottom:0.3rem;">' + escapeHtml(track.name) + '</h2>' +
+                '<p style="font-size:0.84rem;color:var(--text-muted);margin-bottom:0.75rem;">' + escapeHtml(track.description) + '</p>' +
+              '</div>' +
+              '<div>' +
+                '<div style="display:flex;justify-content:space-between;font-size:0.78rem;color:var(--text-muted);">' +
+                  '<span>Progress: ' + prog.solvedQ + '/' + prog.totalQ + ' Qs</span>' +
+                  '<span>' + prog.pct + '%</span>' +
+                '</div>' +
+                '<div class="progress-wrap"><div class="progress-fill" style="width:' + prog.pct + '%"></div></div>' +
+                '<div style="display:flex;gap:0.4rem;margin-top:0.6rem;">' +
+                  '<button type="button" class="btn-primary" style="flex:1;" data-action="open-track" data-track="' + escapeHtml(track.id) + '">Open Track →</button>' +
+                  (completed
+                    ? '<button type="button" class="btn-secondary" data-action="open-cert-modal" data-track="' + escapeHtml(track.id) + '">🎓 Certificate</button>'
+                    : '') +
+                '</div>' +
+              '</div>' +
+            '</article>'
+          );
+        }).join("");
+      }
+
+      /**
+       * Renders the active track's subtopic lesson and 8-question quiz.
+       */
+      function renderActiveTrackWorkspace() {
+        const workspace = document.getElementById("learn-workspace");
+        const track = (window.QUESTION_BANK || []).find(function (t) { return t.id === state.activeTrackId; });
+        if (!workspace || !track) return;
+
+        const topic = track.topics.find(function (tp) { return tp.id === state.activeTopicId; }) || track.topics[0];
+        const sub = topic.subtopics.find(function (sb) { return sb.id === state.activeSubtopicId; }) || topic.subtopics[0];
+        const edu = window.getCuratedEducator ? window.getCuratedEducator(track.name, sub.title) : { url: "https://www.youtube.com/watch?v=grEKMHGYyns" };
+
+        workspace.innerHTML =
+          '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;">' +
+            '<aside class="card" aria-label="Subtopics Menu">' +
+              '<h2 style="font-size:1.05rem;margin-bottom:0.6rem;">' + escapeHtml(track.name) + '</h2>' +
+              track.topics.map(function (tp) {
+                return (
+                  '<div style="margin-bottom:0.75rem;">' +
+                    '<div style="font-size:0.8rem;font-weight:700;color:#93c5fd;margin-bottom:0.3rem;">' + escapeHtml(tp.name) + '</div>' +
+                    tp.subtopics.map(function (sb) {
+                      const active = sb.id === sub.id;
+                      return (
+                        '<button type="button" class="' + (active ? 'btn-primary' : 'btn-secondary') + '" ' +
+                        'style="width:100%;text-align:left;margin-bottom:0.25rem;" ' +
+                        'data-action="select-subtopic" data-topic="' + escapeHtml(tp.id) + '" data-sub="' + escapeHtml(sb.id) + '">' +
+                        escapeHtml(sb.title) +
+                        '</button>'
+                      );
+                    }).join("") +
+                  '</div>'
+                );
+              }).join("") +
+            '</aside>' +
+            '<div class="card">' +
+              '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.85rem;border-bottom:1px solid var(--border);padding-bottom:0.75rem;">' +
+                '<h2 style="font-size:1.25rem;">' + escapeHtml(sub.title) + '</h2>' +
+                '<div style="display:flex;gap:0.4rem;flex-wrap:wrap;">' +
+                  '<button type="button" class="' + (state.activeSubTab === 'lesson' ? 'btn-primary' : 'btn-secondary') + '" data-action="sub-tab" data-tab="lesson">1. Lesson</button>' +
+                  '<button type="button" class="' + (state.activeSubTab === 'quiz' ? 'btn-primary' : 'btn-secondary') + '" data-action="sub-tab" data-tab="quiz">2. Quiz (8 Qs)</button>' +
+                  '<a href="' + escapeHtml(edu.url) + '" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="display:inline-flex;align-items:center;padding:0.4rem 0.8rem;border-radius:8px;text-decoration:none;">Watch Video ↗</a>' +
+                '</div>' +
+              '</div>' +
+              (state.activeSubTab === "lesson"
+                ? '<div>' +
+                    '<p style="white-space:pre-line;margin-bottom:0.8rem;">' + escapeHtml(sub.lesson) + '</p>' +
+                    '<pre class="code-block"><code>' + escapeHtml(sub.example) + '</code></pre>' +
+                  '</div>'
+                : '<div>' +
+                    sub.questions.map(function (qObj, idx) {
+                      const solved = state.user && state.profile.solvedIds.includes(qObj.id);
+                      const badgeCls = qObj.level === "Easy" ? "badge-easy" : (qObj.level === "Medium" ? "badge-medium" : "badge-hard");
+                      return (
+                        '<fieldset>' +
+                          '<legend>Question ' + (idx + 1) + ' — <span class="badge ' + badgeCls + '">' + escapeHtml(qObj.level) + ' (' + qObj.points + ' pts)</span> ' +
+                          (solved ? '<span class="badge badge-easy">✓ Answered Correctly</span>' : '') +
+                          '</legend>' +
+                          '<p style="margin-bottom:0.6rem;font-weight:600;">' + escapeHtml(qObj.q) + '</p>' +
+                          '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0.45rem;">' +
+                            qObj.options.map(function (opt, oIdx) {
+                              return (
+                                '<button type="button" class="btn-secondary" style="text-align:left;" ' +
+                                'data-action="answer-quiz" data-qid="' + escapeHtml(qObj.id) + '" data-opt="' + oIdx + '" ' +
+                                'data-ans="' + qObj.answer + '" data-pts="' + qObj.points + '" data-title="' + escapeHtml(sub.title) + '">' +
+                                String.fromCharCode(65 + oIdx) + '. ' + escapeHtml(opt) +
+                                '</button>'
+                              );
+                            }).join("") +
+                          '</div>' +
+                          '<div id="qfb-' + escapeHtml(qObj.id) + '" role="status" aria-live="polite" style="margin-top:0.45rem;font-weight:700;"></div>' +
+                        '</fieldset>'
+                      );
+                    }).join("") +
+                  '</div>') +
+            '</div>' +
+          '</div>';
+      }
+
+      /**
+       * Renders paginated Code Arena problem list (pages of 30).
+       */
+      function renderArenaPage() {
+        const listEl = document.getElementById("arena-single-column-list");
+        const moreEl = document.getElementById("arena-load-more-wrap");
+        if (!listEl || !window.CODE_PROBLEMS) return;
+
+        const diff = document.getElementById("arena-diff-filter")?.value || "ALL";
+        const status = document.getElementById("arena-status-filter")?.value || "ALL";
+        const query = (document.getElementById("arena-search")?.value || "").toLowerCase().trim();
+
+        const filtered = window.CODE_PROBLEMS.filter(function (p) {
+          if (diff !== "ALL" && p.difficulty !== diff) return false;
+          const isSolved = Boolean(state.user && state.profile.solvedIds.includes(p.id));
+          if (status === "SOLVED" && !isSolved) return false;
+          if (status === "UNSOLVED" && isSolved) return false;
+          if (query && !p.title.toLowerCase().includes(query) && !p.topic.toLowerCase().includes(query)) return false;
+          return true;
+        });
+
+        if (filtered.length === 0) {
+          listEl.innerHTML = '<div class="card"><p>No problems match your current filters.</p></div>';
+          if (moreEl) moreEl.innerHTML = "";
+          return;
+        }
+
+        const slice = filtered.slice(0, state.arenaVisibleCount);
+        listEl.innerHTML = slice.map(function (p) {
+          const solved = Boolean(state.user && state.profile.solvedIds.includes(p.id));
+          const bCls = p.difficulty === "Easy" ? "badge-easy" : (p.difficulty === "Medium" ? "badge-medium" : "badge-hard");
+          return (
+            '<div class="single-row-item">' +
+              '<div style="display:flex;align-items:center;gap:0.65rem;flex-wrap:wrap;">' +
+                '<span style="font-family:monospace;color:var(--text-muted);">#' + p.number + '</span>' +
+                '<span class="badge ' + bCls + '">' + escapeHtml(p.difficulty) + ' • ' + p.points + ' pts</span>' +
+                '<strong>' + escapeHtml(p.title) + '</strong>' +
+                '<span class="badge badge-info">' + escapeHtml(p.topic) + '</span>' +
+                (solved ? '<span class="badge badge-easy">✓ Solved</span>' : '') +
+              '</div>' +
+              '<button type="button" class="btn-primary" data-action="open-problem" data-pid="' + escapeHtml(p.id) + '">Solve Problem →</button>' +
+            '</div>'
+          );
+        }).join("");
+
+        if (moreEl) {
+          if (state.arenaVisibleCount < filtered.length) {
+            moreEl.innerHTML =
+              '<button type="button" class="btn-primary" data-action="load-more-arena">' +
+              'Load More Problems (' + slice.length + ' of ' + filtered.length + ' shown)' +
+              '</button>';
+          } else {
+            moreEl.innerHTML = '<span class="badge badge-easy">All ' + filtered.length + ' matching problems shown ✓</span>';
+          }
+        }
+      }
+
+      /**
+       * Renders the active Code Arena problem workspace.
+       * @param {string} pid
+       */
+      function renderArenaProblemDetail(pid) {
+        const box = document.getElementById("arena-problem-workspace");
+        const p = (window.CODE_PROBLEMS || []).find(function (x) { return x.id === pid; });
+        if (!box || !p) return;
+
+        state.activeProblemId = p.id;
+        box.style.display = "block";
+        const bCls = p.difficulty === "Easy" ? "badge-easy" : (p.difficulty === "Medium" ? "badge-medium" : "badge-hard");
+
+        box.innerHTML =
+          '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.6rem;">' +
+            '<div>' +
+              '<span class="badge ' + bCls + '">' + escapeHtml(p.difficulty) + ' • ' + p.points + ' pts</span> ' +
+              '<h2 style="display:inline;font-size:1.2rem;margin-left:0.4rem;">#' + p.number + '. ' + escapeHtml(p.title) + '</h2>' +
+            '</div>' +
+            '<button type="button" class="btn-secondary" data-action="close-problem">✕ Close</button>' +
+          '</div>' +
+          '<p style="margin-bottom:0.5rem;">' + escapeHtml(p.description) + '</p>' +
+          '<pre class="code-block"><code>' + escapeHtml(p.example) + '</code></pre>' +
+          '<label for="arena-code-editor">JavaScript Solution Function (<code>' + escapeHtml(p.fnName) + '</code>)</label>' +
+          '<textarea id="arena-code-editor" class="code-editor">' + escapeHtml(p.starters.javascript) + '</textarea>' +
+          '<div style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;">' +
+            '<button type="button" class="btn-primary" data-action="run-worker-tests" data-pid="' + escapeHtml(p.id) + '">▶ Run ' + p.tests.length + ' Hidden Tests (Web Worker)</button>' +
+            '<button type="button" class="btn-secondary" data-action="fill-ref-solution" data-pid="' + escapeHtml(p.id) + '">Load Reference Solution</button>' +
+          '</div>' +
+          '<div id="arena-test-results" role="status" aria-live="polite" style="margin-top:0.75rem;"></div>';
+      }
+
+      /**
+       * Renders the Roadmaps section.
+       */
+      function renderRoadmapsPage() {
+        const sel = document.getElementById("roadmap-select");
+        const container = document.getElementById("roadmap-detail-container");
+        if (!sel || !container || !window.DOMAIN_ROADMAPS) return;
+
+        if (!sel.options.length) {
+          sel.innerHTML = window.DOMAIN_ROADMAPS.map(function (r) {
+            return '<option value="' + escapeHtml(r.id) + '">' + escapeHtml(r.name) + '</option>';
+          }).join("");
+        }
+        const rm = window.DOMAIN_ROADMAPS.find(function (r) { return r.id === sel.value; }) || window.DOMAIN_ROADMAPS[0];
+        if (!rm) return;
+
+        container.innerHTML = rm.steps.map(function (st, idx) {
+          return (
+            '<article class="card">' +
+              '<span class="badge badge-info">' + escapeHtml(st.phase) + ' • ' + escapeHtml(st.duration) + '</span>' +
+              '<h2 style="font-size:1.15rem;margin:0.35rem 0;">Stage ' + (idx + 1) + ': ' + escapeHtml(st.title) + '</h2>' +
+              '<p style="color:var(--text-muted);font-size:0.86rem;margin-bottom:0.65rem;">' + escapeHtml(st.theorySummary) + '</p>' +
+              '<a href="' + escapeHtml(st.ytUrl) + '" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="display:inline-flex;padding:0.4rem 0.85rem;border-radius:8px;text-decoration:none;">Watch Full Course (' + escapeHtml(st.educator) + ') ↗</a>' +
+            '</article>'
+          );
+        }).join("");
+      }
+
+      /**
+       * Renders the MNC Placement questions list.
+       */
+      function renderPlacementsPage() {
+        const compSel = document.getElementById("mnc-filter-company");
+        const roleSel = document.getElementById("mnc-filter-role");
+        const langSel = document.getElementById("mnc-filter-lang");
+        const diffSel = document.getElementById("mnc-filter-diff");
+        const listEl = document.getElementById("mnc-questions-list");
+        if (!compSel || !listEl || !window.generateMNCQuestions) return;
+
+        if (!compSel.options.length && window.MNC_COMPANIES_META) {
+          compSel.innerHTML = window.MNC_COMPANIES_META.map(function (c) {
+            return '<option value="' + escapeHtml(c.id) + '">' + escapeHtml(c.name) + '</option>';
+          }).join("");
+          roleSel.innerHTML = (window.MNC_ROLES || []).map(function (r) {
+            return '<option value="' + escapeHtml(r) + '">' + escapeHtml(r) + '</option>';
+          }).join("");
+          langSel.innerHTML = (window.MNC_LANGUAGES || []).map(function (l) {
+            return '<option value="' + escapeHtml(l) + '">' + escapeHtml(l) + '</option>';
+          }).join("");
+        }
+
+        const qs = window.generateMNCQuestions(
+          compSel.value || "Zoho",
+          roleSel.value || "Software Development Engineer (SDE)",
+          langSel.value || "Java",
+          "All Categories",
+          diffSel ? diffSel.value : "Easy"
+        ).slice(0, 15);
+
+        listEl.innerHTML = qs.map(function (qObj) {
+          const bCls = qObj.difficulty === "Easy" ? "badge-easy" : (qObj.difficulty === "Medium" ? "badge-medium" : "badge-hard");
+          return (
+            '<fieldset>' +
+              '<legend><span class="badge ' + bCls + '">' + escapeHtml(qObj.company) + ' • ' + escapeHtml(qObj.difficulty) + ' #' + qObj.number + ' (' + qObj.points + ' pts)</span></legend>' +
+              '<p style="font-weight:600;margin-bottom:0.55rem;">' + escapeHtml(qObj.q) + '</p>' +
+              '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0.45rem;">' +
+                qObj.options.map(function (opt, oIdx) {
+                  return (
+                    '<button type="button" class="btn-secondary" style="text-align:left;" ' +
+                    'data-action="answer-quiz" data-qid="' + escapeHtml(qObj.id) + '" data-opt="' + oIdx + '" ' +
+                    'data-ans="' + qObj.answer + '" data-pts="' + qObj.points + '" data-title="' + escapeHtml(qObj.company) + '">' +
+                    String.fromCharCode(65 + oIdx) + '. ' + escapeHtml(opt) +
+                    '</button>'
+                  );
+                }).join("") +
+              '</div>' +
+              '<div id="qfb-' + escapeHtml(qObj.id) + '" role="status" aria-live="polite" style="margin-top:0.4rem;font-weight:700;"></div>' +
+            '</fieldset>'
+          );
+        }).join("");
+      }
+
+      /**
+       * Generates Overleaf LaTeX resume code.
+       */
+      function renderResumePage() {
+        const name = document.getElementById("res-name")?.value || "Student Name";
+        const contact = document.getElementById("res-contact")?.value || "student@university.edu";
+        const college = document.getElementById("res-college")?.value || "B.Tech CS";
+        const skills = document.getElementById("res-skills")?.value || "Java, Python, SQL";
+        const editor = document.getElementById("latex-resume-editor");
+        if (!editor) return;
+
+        editor.value = [
+          "\\documentclass[letterpaper,11pt]{article}",
+          "\\usepackage[margin=0.55in]{geometry}",
+          "\\usepackage{enumitem}",
+          "\\pagenumbering{gobble}",
+          "\\begin{document}",
+          "\\begin{center}",
+          "  {\\Huge \\textbf{" + name.toUpperCase() + "}} \\\\[4pt]",
+          "  \\small " + contact.replace(/\|/g, "$|$"),
+          "\\end{center}",
+          "\\section*{Education}",
+          "\\textbf{" + college.replace(/&/g, "\\&") + "} \\hfill 2023 -- 2027",
+          "\\section*{Technical Skills}",
+          "\\begin{itemize}[leftmargin=0.15in, noitemsep]",
+          "  \\item \\textbf{Languages \\& Tools:} " + skills.replace(/&/g, "\\&"),
+          "\\end{itemize}",
+          "\\end{document}"
+        ].join("\n");
+      }
+
+      /**
+       * Renders the Projects Studio list.
+       */
+      function renderStudioPage() {
+        const listEl = document.getElementById("studio-projects-list");
+        if (!listEl || !window.SKILL_PROJECT_STUDIO) return;
+        listEl.innerHTML = window.SKILL_PROJECT_STUDIO.projects.map(function (p) {
+          const bCls = p.difficulty === "Easy" ? "badge-easy" : (p.difficulty === "Medium" ? "badge-medium" : "badge-hard");
+          return (
+            '<article class="card">' +
+              '<span class="badge ' + bCls + '">' + escapeHtml(p.difficulty) + '</span>' +
+              '<h2 style="font-size:1.15rem;margin:0.35rem 0;">' + escapeHtml(p.title) + '</h2>' +
+              '<p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:0.6rem;">' + escapeHtml(p.summary) + '</p>' +
+              '<ul style="padding-left:1.2rem;font-size:0.84rem;">' +
+                p.dayByDayPlan.map(function (d) { return '<li>' + escapeHtml(d) + '</li>'; }).join("") +
+              '</ul>' +
+            '</article>'
+          );
+        }).join("");
+      }
+
+      /**
+       * Renders the Community discussion feed safely.
+       */
+      function renderCommunityPage() {
+        const feed = document.getElementById("community-feed");
+        if (!feed) return;
+        feed.innerHTML = state.communityMessages.map(function (m) {
+          return (
+            '<div class="single-row-item">' +
+              '<div><strong>@' + escapeHtml(m.user) + ':</strong> ' + escapeHtml(m.text) + '</div>' +
+              '<span style="font-size:0.75rem;color:var(--text-muted);">' + escapeHtml(m.time) + '</span>' +
+            '</div>'
+          );
+        }).join("");
+      }
+
+      /**
+       * Renders the Get Certified external links page.
+       */
+      function renderCertifiedPage() {
+        const listEl = document.getElementById("certified-list-container");
+        if (!listEl || !window.CERTIFICATION_CATALOG) return;
+        listEl.innerHTML = window.CERTIFICATION_CATALOG.slice(0, 30).map(function (c) {
+          return (
+            '<div class="single-row-item">' +
+              '<div>' +
+                '<span class="badge badge-info">' + escapeHtml(c.provider) + ' • ' + escapeHtml(c.category) + '</span>' +
+                '<h2 style="font-size:1rem;margin-top:0.25rem;">' + escapeHtml(c.courseTitle) + '</h2>' +
+              '</div>' +
+              '<a href="' + escapeHtml(c.url) + '" target="_blank" rel="noopener noreferrer" class="btn-primary" style="text-decoration:none;">Open Official Site ↗</a>' +
+            '</div>'
+          );
+        }).join("");
+      }
+
+      /**
+       * Renders the user's earned track certificates.
+       */
+      function renderMyCertsPage() {
+        const el = document.getElementById("mycerts-list");
+        if (!el || !window.QUESTION_BANK) return;
+        if (!state.user) {
+          el.innerHTML = '<div class="card"><p>🔒 Please sign in to view your earned track completion certificates.</p></div>';
+          return;
+        }
+        const completedTracks = window.QUESTION_BANK.filter(function (t) {
+          return isTrackCompleted(t, state.profile.solvedIds);
+        });
+        if (completedTracks.length === 0) {
+          el.innerHTML = '<div class="card"><p>Complete all questions in any learning track to unlock your verifiable certificate here!</p></div>';
+          return;
+        }
+        el.innerHTML = completedTracks.map(function (t) {
+          const certId = generateCertificateId(state.user.uid, t.id);
+          return (
+            '<article class="card">' +
+              '<span class="badge badge-easy">✓ Verified Completion</span>' +
+              '<h2 style="font-size:1.1rem;margin:0.4rem 0;">' + escapeHtml(t.name) + '</h2>' +
+              '<p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.6rem;">Certificate ID: <code>' + escapeHtml(certId) + '</code></p>' +
+              '<button type="button" class="btn-primary" data-action="open-cert-modal" data-track="' + escapeHtml(t.id) + '">View Certificate</button>' +
+            '</article>'
+          );
+        }).join("");
+      }
+
+      /**
+       * Renders the user's personal activity dashboard.
+       */
+      function renderVaultPage() {
+        const el = document.getElementById("vault-content");
+        if (!el) return;
+        if (!state.user) {
+          el.innerHTML = '<div class="card"><p>🔒 You are signed out. Sign in to view your personal score, quizzes, and code submissions.</p></div>';
+          return;
+        }
+        el.innerHTML =
+          '<div class="stats-strip">' +
+            '<div class="stat-card"><div class="stat-val gradient-text">' + (state.profile.score || 0) + ' pts</div><div>Total Score</div></div>' +
+            '<div class="stat-card"><div class="stat-val gradient-text">' + (state.profile.learnScore || 0) + ' pts</div><div>Learn Score</div></div>' +
+            '<div class="stat-card"><div class="stat-val gradient-text">' + (state.profile.codeScore || 0) + ' pts</div><div>Code Arena Score</div></div>' +
+          '</div>';
+      }
+
+      /**
+       * Renders the Accessible Leaderboard table with caption and th scope.
+       */
+      function renderLeaderboardPage() {
+        const container = document.getElementById("leaderboard-container");
+        if (!container) return;
+
+        const rows = state.leaderboardRows.slice();
+        if (state.user && !rows.some(function (r) { return r.id === state.user.uid; })) {
+          rows.push({
+            id: state.user.uid,
+            name: state.user.displayName || state.profile.name || "Student",
+            score: state.profile.score || 0,
+            learnScore: state.profile.learnScore || 0,
+            codeScore: state.profile.codeScore || 0
+          });
+        }
+
+        const field = state.lbFilter || "score";
+        rows.sort(function (a, b) { return (Number(b[field]) || 0) - (Number(a[field]) || 0); });
+
+        if (rows.length === 0) {
+          container.innerHTML = '<div class="card"><p>Loading top 100 students from Firestore...</p></div>';
+          return;
+        }
+
+        container.innerHTML =
+          '<table class="lb-table">' +
+            '<caption>Top 100 Students Sorted by ' + escapeHtml(field) + '</caption>' +
+            '<thead>' +
+              '<tr>' +
+                '<th scope="col">Rank</th>' +
+                '<th scope="col">Student Name</th>' +
+                '<th scope="col">Overall Score</th>' +
+                '<th scope="col">Learn Score</th>' +
+                '<th scope="col">Code Arena Score</th>' +
+              '</tr>' +
+            '</thead>' +
+            '<tbody>' +
+              rows.slice(0, 100).map(function (r, idx) {
+                const isMe = Boolean(state.user && r.id === state.user.uid);
+                return (
+                  '<tr class="' + (isMe ? 'me-row' : '') + '">' +
+                    '<th scope="row">#' + (idx + 1) + '</th>' +
+                    '<td>' + escapeHtml(r.name || "Student") + (isMe ? ' <span class="badge badge-easy">✓ You</span>' : '') + '</td>' +
+                    '<td>' + (Number(r.score) || 0) + ' pts</td>' +
+                    '<td>' + (Number(r.learnScore) || 0) + ' pts</td>' +
+                    '<td>' + (Number(r.codeScore) || 0) + ' pts</td>' +
+                  '</tr>'
+                );
+              }).join("") +
+            '</tbody>' +
+          '</table>';
+      }
+
+      /* =====================================================================
+         SECTION 7: ACCESSIBLE CERTIFICATE MODAL & FOCUS TRAP
+         ===================================================================== */
+
+      /**
+       * Opens the accessible certificate modal and traps keyboard focus.
+       * @param {string} trackId
+       * @param {HTMLElement} triggerEl
+       */
+      function openCertificateModal(trackId, triggerEl) {
+        const track = (window.QUESTION_BANK || []).find(function (t) { return t.id === trackId; });
+        const backdrop = document.getElementById("cert-modal-backdrop");
+        const body = document.getElementById("cert-modal-body");
+        if (!track || !backdrop || !body || !state.user) return;
+
+        state.lastFocusedElement = triggerEl || document.activeElement;
+        const certId = generateCertificateId(state.user.uid, track.id);
+
+        body.innerHTML =
+          '<p style="font-size:0.8rem;color:#93c5fd;">PROMPT WASH ARENA OFFICIAL CREDENTIAL</p>' +
+          '<h3 style="font-size:1.5rem;margin:0.4rem 0;">' + escapeHtml(state.user.displayName || "Student") + '</h3>' +
+          '<p style="margin-bottom:0.5rem;">has successfully mastered 100% of the track</p>' +
+          '<h4 style="font-size:1.25rem;color:#34d399;margin-bottom:0.6rem;">' + escapeHtml(track.name) + '</h4>' +
+          '<p style="font-family:monospace;font-size:0.82rem;">Certificate ID: ' + escapeHtml(certId) + '</p>';
+
+        backdrop.classList.add("open");
+        backdrop.setAttribute("aria-hidden", "false");
+        document.getElementById("cert-modal-close")?.focus();
+      }
+
+      /**
+       * Closes the certificate modal and restores focus to the trigger button.
+       */
+      function closeCertificateModal() {
+        const backdrop = document.getElementById("cert-modal-backdrop");
+        if (!backdrop) return;
+        backdrop.classList.remove("open");
+        backdrop.setAttribute("aria-hidden", "true");
+        if (state.lastFocusedElement && typeof state.lastFocusedElement.focus === "function") {
+          state.lastFocusedElement.focus();
+        }
+      }
+
+      /* =====================================================================
+         SECTION 8: NAVIGATION & SINGLE EVENT DELEGATION CONTROLLER
+         ===================================================================== */
+
+      /**
+       * Switches active view, updates document.title, manages Firestore listener, and moves focus to h1.
+       * @param {string} pageId
+       */
+      function switchPage(pageId) {
+        if (state.currentPage === "leaderboard" && pageId !== "leaderboard" && typeof state.lbUnsubscribe === "function") {
+          state.lbUnsubscribe();
+          state.lbUnsubscribe = null;
+        }
+
+        state.currentPage = pageId;
+        document.querySelectorAll(".page-section").forEach(function (sec) {
+          sec.classList.toggle("active", sec.id === "page-" + pageId);
+        });
+
+        document.querySelectorAll(".nav-btn").forEach(function (btn) {
+          if (btn.getAttribute("data-page") === pageId) {
+            btn.setAttribute("aria-current", "page");
+          } else {
+            btn.removeAttribute("aria-current");
+          }
+        });
+
+        const pageTitles = {
+          home: "Home — Prompt Wash Arena",
+          learn: "Learn Tracks — Prompt Wash Arena",
+          roadmaps: "Domain Roadmaps — Prompt Wash Arena",
+          arena: "Code Arena — Prompt Wash Arena",
+          placements: "MNC Placement Prep — Prompt Wash Arena",
+          resume: "Overleaf Resume Builder — Prompt Wash Arena",
+          studio: "Projects Studio — Prompt Wash Arena",
+          community: "Community Discussion — Prompt Wash Arena",
+          certified: "Get Certified — Prompt Wash Arena",
+          mycerts: "My Certificates — Prompt Wash Arena",
+          vault: "My Activity — Prompt Wash Arena",
+          leaderboard: "Leaderboard — Prompt Wash Arena"
+        };
+        document.title = pageTitles[pageId] || "Prompt Wash Arena";
+
+        if (pageId === "learn") renderLearnPage();
+        if (pageId === "roadmaps") renderRoadmapsPage();
+        if (pageId === "arena") renderArenaPage();
+        if (pageId === "placements") renderPlacementsPage();
+        if (pageId === "resume") renderResumePage();
+        if (pageId === "studio") renderStudioPage();
+        if (pageId === "community") renderCommunityPage();
+        if (pageId === "certified") renderCertifiedPage();
+        if (pageId === "mycerts") renderMyCertsPage();
+        if (pageId === "vault") renderVaultPage();
+        if (pageId === "leaderboard") {
+          if (typeof state.firebaseSubscribeLb === "function" && !state.lbUnsubscribe) {
+            state.lbUnsubscribe = state.firebaseSubscribeLb();
+          }
+          renderLeaderboardPage();
+        }
+
+        const heading = document.getElementById("heading-" + pageId);
+        if (heading) heading.focus();
+      }
+      window.switchPage = switchPage;
+
+      /**
+       * Handles all button clicks via single document-level event delegation.
+       * @param {MouseEvent} event
+       */
+      async function handleDelegatedClick(event) {
+        const btn = event.target.closest("[data-action]");
+        if (!btn) return;
+        const action = btn.getAttribute("data-action");
+
+        if (action === "nav") {
+          switchPage(btn.getAttribute("data-page") || "home");
+        } else if (action === "auth-toggle") {
+          await handleAuthAction();
+        } else if (action === "open-track") {
+          const tid = btn.getAttribute("data-track");
+          const track = (window.QUESTION_BANK || []).find(function (t) { return t.id === tid; });
+          if (track) {
+            state.activeTrackId = track.id;
+            state.activeTopicId = track.topics[0].id;
+            state.activeSubtopicId = track.topics[0].subtopics[0].id;
+            state.activeSubTab = "lesson";
+            renderLearnPage();
+          }
+        } else if (action === "close-track") {
+          state.activeTrackId = null;
+          renderLearnPage();
+        } else if (action === "select-subtopic") {
+          state.activeTopicId = btn.getAttribute("data-topic");
+          state.activeSubtopicId = btn.getAttribute("data-sub");
+          renderActiveTrackWorkspace();
+        } else if (action === "sub-tab") {
+          state.activeSubTab = btn.getAttribute("data-tab") || "lesson";
+          renderActiveTrackWorkspace();
+        } else if (action === "answer-quiz") {
+          const qid = btn.getAttribute("data-qid");
+          const opt = Number(btn.getAttribute("data-opt"));
+          const ans = Number(btn.getAttribute("data-ans"));
+          const pts = Number(btn.getAttribute("data-pts"));
+          const title = btn.getAttribute("data-title");
+          const fb = document.getElementById("qfb-" + qid);
+          if (opt === ans) {
+            const added = await handleAwardPoints(qid, pts, "learn", { quizTitle: title });
+            if (fb) fb.textContent = "✓ Correct! " + (added ? "+" + pts + " pts awarded." : "(Already solved)");
+          } else {
+            if (fb) fb.textContent = "✗ Incorrect option. Review the lesson and try again.";
+          }
+        } else if (action === "load-more-arena") {
+          state.arenaVisibleCount += ARENA_PAGE_SIZE;
+          renderArenaPage();
+        } else if (action === "open-problem") {
+          renderArenaProblemDetail(btn.getAttribute("data-pid"));
+        } else if (action === "close-problem") {
+          const box = document.getElementById("arena-problem-workspace");
+          if (box) box.style.display = "none";
+        } else if (action === "fill-ref-solution") {
+          const pid = btn.getAttribute("data-pid");
+          const p = (window.CODE_PROBLEMS || []).find(function (x) { return x.id === pid; });
+          const editor = document.getElementById("arena-code-editor");
+          if (p && editor) editor.value = p.solutions.javascript;
+        } else if (action === "run-worker-tests") {
+          await executeProblemWorkerTests(btn.getAttribute("data-pid"));
+        } else if (action === "generate-resume") {
+          renderResumePage();
+        } else if (action === "copy-resume") {
+          const ed = document.getElementById("latex-resume-editor");
+          if (ed && navigator.clipboard) navigator.clipboard.writeText(ed.value);
+        } else if (action === "post-community") {
+          handlePostCommunity();
+        } else if (action === "lb-filter") {
+          state.lbFilter = btn.getAttribute("data-field") || "score";
+          renderLeaderboardPage();
+        } else if (action === "open-cert-modal") {
+          openCertificateModal(btn.getAttribute("data-track"), btn);
+        } else if (action === "close-cert-modal") {
+          closeCertificateModal();
+        } else if (action === "print-cert") {
+          window.print();
+        } else if (action === "cycle-pet") {
+          const pets = window.PWA_ZOOTOPIA_PETS || [];
+          if (pets.length) {
+            state.petIndex = (state.petIndex + 1) % pets.length;
+            document.getElementById("pet-emoji").textContent = pets[state.petIndex].emoji;
+            document.getElementById("pet-quote").textContent = '"' + pets[state.petIndex].tip + '"';
+          }
+        } else if (action === "toggle-chat") {
+          const panel = document.getElementById("ai-chat-panel");
+          const fab = document.getElementById("ai-fab");
+          if (panel) {
+            const isOpen = panel.classList.toggle("open");
+            if (fab) fab.setAttribute("aria-expanded", String(isOpen));
+          }
+        } else if (action === "send-chat") {
+          await handleSendAIChat();
+        }
+      }
+
+      /**
+       * Executes Code Arena tests inside the sandboxed Web Worker.
+       * @param {string} pid
+       */
+      async function executeProblemWorkerTests(pid) {
+        const p = (window.CODE_PROBLEMS || []).find(function (x) { return x.id === pid; });
+        const editor = document.getElementById("arena-code-editor");
+        const out = document.getElementById("arena-test-results");
+        if (!p || !editor || !out) return;
+
+        out.textContent = "⏳ Running " + p.tests.length + " hidden tests inside isolated Web Worker (3s timeout)...";
+        const res = await runCodeInWorker(editor.value, p.fnName, p.tests);
+
+        if (res.timedOut || res.error) {
+          out.textContent = "✗ Error: " + (res.error || "Timed out");
+          return;
+        }
+
+        const passed = res.results.filter(function (r) { return r.pass; }).length;
+        const allPass = passed === p.tests.length;
+        if (allPass) {
+          await handleAwardPoints(p.id, p.points, "code", { title: p.title });
+          renderArenaPage();
+        }
+        out.textContent = (allPass ? "✓ All " : "✗ ") + passed + " / " + p.tests.length + " Hidden Tests Passed!";
+      }
+
+      /**
+       * Handles signing in or signing out while preserving strict account isolation.
+       */
+      async function handleAuthAction() {
+        if (state.user) {
+          try {
+            if (typeof state.firebaseSignOut === "function") await state.firebaseSignOut();
+          } catch (err) {
+            showErrorBanner("Sign out error: " + err.message);
+          }
+          state.user = null;
+          state.profile = createEmptyProfile();
+          state.progressCache.clear();
+          try { localStorage.removeItem("nexora_auth_user"); } catch (_) {}
+          renderHeaderAuthUI();
+          switchPage(state.currentPage);
+          return;
+        }
+
+        if (typeof state.firebaseSignIn === "function") {
+          try {
+            await state.firebaseSignIn();
+            return;
+          } catch (err) {
+            showErrorBanner("Google Popup notice: Make sure your domain is added to Firebase Authorized Domains.");
+          }
+        }
+      }
+
+      /**
+       * Validates and posts a community message (signed-in only, rate-limited).
+       */
+      function handlePostCommunity() {
+        const fb = document.getElementById("community-feedback");
+        const input = document.getElementById("community-msg-input");
+        if (!state.user) {
+          if (fb) fb.textContent = "🔒 Please sign in to post in the community.";
+          return;
+        }
+        const check = validateChatMessage(input ? input.value : "", state.lastChatSentAt, Date.now());
+        if (!check.valid) {
+          if (fb) fb.textContent = check.reason;
+          return;
+        }
+        state.lastChatSentAt = Date.now();
+        state.communityMessages.push({
+          user: state.user.displayName || "Student",
+          text: check.clean,
+          time: "Just now"
+        });
+        if (input) input.value = "";
+        if (fb) fb.textContent = "✓ Message posted!";
+        renderCommunityPage();
+      }
+
+      /**
+       * Sends a validated, rate-limited message to the lazy-initialized AI Tutor.
+       */
+      async function handleSendAIChat() {
+        const input = document.getElementById("ai-chat-input");
+        const feed = document.getElementById("ai-chat-messages");
+        if (!input || !feed) return;
+
+        if (!state.user) {
+          const warn = document.createElement("div");
+          warn.className = "msg-bubble msg-ai";
+          warn.textContent = "🔒 Please sign in first to chat with the AI Tutor.";
+          feed.appendChild(warn);
+          return;
+        }
+
+        const check = validateChatMessage(input.value, state.lastChatSentAt, Date.now());
+        if (!check.valid) {
+          const warn = document.createElement("div");
+          warn.className = "msg-bubble msg-ai";
+          warn.textContent = "⚠️ " + check.reason;
+          feed.appendChild(warn);
+          return;
+        }
+
+        state.lastChatSentAt = Date.now();
+        input.value = "";
+
+        const userBubble = document.createElement("div");
+        userBubble.className = "msg-bubble msg-user";
+        userBubble.textContent = check.clean;
+        feed.appendChild(userBubble);
+
+        const aiBubble = document.createElement("div");
+        aiBubble.className = "msg-bubble msg-ai";
+        aiBubble.textContent = "Thinking...";
+        feed.appendChild(aiBubble);
+        feed.scrollTop = feed.scrollHeight;
+
+        let reply = "";
+        if (typeof state.askGeminiLazy === "function") {
+          try {
+            reply = await state.askGeminiLazy(check.clean);
+          } catch (err) {
+            reply = "";
+          }
+        }
+        if (!reply && typeof window.generateSmartAITutorResponse === "function") {
+          reply = window.generateSmartAITutorResponse(check.clean, state.currentPage);
+        }
+        aiBubble.textContent = reply || "Keep practicing step by step!";
+        feed.scrollTop = feed.scrollHeight;
+      }
+
+      /* =====================================================================
+         SECTION 9: INITIALIZATION & EVENT LISTENERS
+         ===================================================================== */
+      function initApp() {
+        const diag = document.getElementById("diagnostic-banner");
+        if (!window.QUESTION_BANK || !window.CODE_PROBLEMS) {
+          if (diag) {
+            diag.style.display = "block";
+            diag.textContent = "Error: questions.js or problems.js failed to load. Ensure both files are in the same directory as index.html.";
+          }
+        }
+
+        document.addEventListener("click", handleDelegatedClick);
+
+        const debouncedLearn = debounce(renderLearnPage, DEBOUNCE_DELAY_MS);
+        const debouncedArena = debounce(function () {
+          state.arenaVisibleCount = ARENA_PAGE_SIZE;
+          renderArenaPage();
+        }, DEBOUNCE_DELAY_MS);
+
+        document.getElementById("learn-search")?.addEventListener("input", debouncedLearn);
+        document.getElementById("arena-search")?.addEventListener("input", debouncedArena);
+        document.getElementById("arena-diff-filter")?.addEventListener("change", debouncedArena);
+        document.getElementById("arena-status-filter")?.addEventListener("change", debouncedArena);
+        document.getElementById("roadmap-select")?.addEventListener("change", renderRoadmapsPage);
+        document.getElementById("mnc-filter-company")?.addEventListener("change", renderPlacementsPage);
+        document.getElementById("mnc-filter-diff")?.addEventListener("change", renderPlacementsPage);
+
+        document.addEventListener("keydown", function (ev) {
+          const modal = document.getElementById("cert-modal-backdrop");
+          if (modal && modal.classList.contains("open")) {
+            if (ev.key === "Escape") {
+              closeCertificateModal();
+            } else if (ev.key === "Tab") {
+              const focusable = modal.querySelectorAll("button");
+              if (focusable.length > 0) {
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (ev.shiftKey && document.activeElement === first) {
+                  ev.preventDefault();
+                  last.focus();
+                } else if (!ev.shiftKey && document.activeElement === last) {
+                  ev.preventDefault();
+                  first.focus();
+                }
+              }
+            }
+          }
+        });
+
+        document.addEventListener("visibilitychange", function () {
+          const pill = document.getElementById("compact-pet-pill");
+          if (pill) pill.classList.toggle("pet-paused", document.hidden);
+        });
+
+        renderHeaderAuthUI();
+        renderLearnPage();
+      }
+
+      initApp();
+    })();
+  </script>
+
+  <!-- Firebase v10 Modular SDK (Exact Config Preserved) -->
   <script type="module">
     const firebaseConfig = {
       apiKey: "AIzaSyDiJqktDmZCNo_bvQOu7GrrksZMm5XrYKM",
@@ -502,1344 +2287,108 @@
       measurementId: "G-1YHS646QSX"
     };
 
-    window.FB_BRIDGE = {
-      ready: false,
-      signInGoogle: null,
-      signOutUser: null,
-      syncScore: null,
-      ensureUserDoc: null
-    };
-
     (async function () {
       try {
         const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js");
         const { getAnalytics, isSupported } = await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js");
         const { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js");
-        const { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, increment, collection, onSnapshot } = await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js");
+        const { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, increment, collection, query, orderBy, limit, onSnapshot } = await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js");
 
         const app = initializeApp(firebaseConfig);
         isSupported().then((yes) => { if (yes) getAnalytics(app); }).catch(() => {});
 
         const auth = getAuth(app);
         const db = getFirestore(app);
-        const provider = new GoogleAuthProvider();
-        provider.setCustomParameters({ prompt: "select_account" });
+        const st = window.PWA_STATE;
 
-        window.FB_BRIDGE.ready = true;
-        window.FB_BRIDGE.signInGoogle = () => signInWithPopup(auth, provider);
-        window.FB_BRIDGE.signOutUser = () => signOut(auth);
-
-        window.FB_BRIDGE.ensureUserDoc = async (uObj, prof) => {
-          if (!uObj || !uObj.uid) return prof;
-          const ref = doc(db, "students", uObj.uid);
-          const snap = await getDoc(ref);
-          if (!snap.exists()) {
-            await setDoc(ref, {
-              name: uObj.displayName || prof.name || "Student",
-              email: uObj.email || prof.email || "",
-              score: prof.score || 0,
-              learnScore: prof.learnScore || 0,
-              codeScore: prof.codeScore || 0,
-              solvedIds: prof.solvedIds || []
-            });
-            return prof;
-          } else {
-            const d = snap.data();
-            const merged = Object.assign({}, prof, {
-              score: Math.max(prof.score || 0, d.score || 0),
-              learnScore: Math.max(prof.learnScore || 0, d.learnScore || 0),
-              codeScore: Math.max(prof.codeScore || 0, d.codeScore || 0)
-            });
-            return merged;
-          }
+        st.firebaseSignIn = async () => {
+          const provider = new GoogleAuthProvider();
+          provider.setCustomParameters({ prompt: "select_account" });
+          await signInWithPopup(auth, provider);
         };
 
-        window.FB_BRIDGE.syncScore = async (uObj, itemId, pts, categoryType, prof) => {
-          if (!uObj || !uObj.uid) return;
-          const ref = doc(db, "students", uObj.uid);
-          const payload = {
-            name: uObj.displayName || "Student",
-            email: uObj.email || "",
-            score: increment(pts),
-            solvedIds: arrayUnion(itemId)
-          };
-          if (categoryType === "learn") payload.learnScore = increment(pts);
-          if (categoryType === "code") payload.codeScore = increment(pts);
+        st.firebaseSignOut = async () => {
+          await signOut(auth);
+        };
+
+        onAuthStateChanged(auth, async (user) => {
+          if (!user) {
+            st.user = null;
+            st.profile = { name: "", email: "", score: 0, learnScore: 0, codeScore: 0, solvedIds: [], quizzesAttended: [], solvedPrograms: [] };
+            window.switchPage(st.currentPage);
+            return;
+          }
+
+          st.user = { uid: user.uid, displayName: user.displayName || "Student", email: user.email || "" };
           try {
-            await updateDoc(ref, payload);
-          } catch (_) {
-            await setDoc(ref, {
-              name: uObj.displayName || "Student",
-              email: uObj.email || "",
-              score: prof.score || pts,
-              learnScore: prof.learnScore || 0,
-              codeScore: prof.codeScore || 0,
-              solvedIds: prof.solvedIds || [itemId]
-            });
-          }
-        };
+            const ref = doc(db, "students", user.uid);
+            const snap = await getDoc(ref);
+            if (!snap.exists()) {
+              const initDoc = {
+                name: st.user.displayName,
+                email: st.user.email,
+                score: 0,
+                learnScore: 0,
+                codeScore: 0,
+                solvedIds: []
+              };
+              await setDoc(ref, initDoc);
+              st.profile = Object.assign(st.profile, initDoc);
+            } else {
+              const d = snap.data();
+              st.profile.name = d.name || st.user.displayName;
+              st.profile.email = d.email || st.user.email;
+              st.profile.score = Number(d.score) || 0;
+              st.profile.learnScore = Number(d.learnScore) || 0;
+              st.profile.codeScore = Number(d.codeScore) || 0;
+              st.profile.solvedIds = Array.isArray(d.solvedIds) ? d.solvedIds : [];
+            }
+          } catch (_) {}
 
-        onAuthStateChanged(auth, (fbUser) => {
-          window.dispatchEvent(new CustomEvent("fb-auth-changed", { detail: fbUser }));
+          window.switchPage(st.currentPage);
         });
 
-        onSnapshot(collection(db, "students"), (snap) => {
-          const rows = [];
-          snap.forEach((d) => rows.push(Object.assign({ id: d.id }, d.data())));
-          window.dispatchEvent(new CustomEvent("fb-lb-changed", { detail: rows }));
-        }, () => {});
-      } catch (e) {
-        console.warn("Firebase init notice:", e);
+        st.firebaseSyncScore = async (itemId, pts, categoryType) => {
+          if (!st.user) return;
+          const ref = doc(db, "students", st.user.uid);
+          const payload = {
+            score: increment(pts),
+            learnScore: increment(categoryType === "learn" ? pts : 0),
+            codeScore: increment(categoryType === "code" ? pts : 0),
+            solvedIds: arrayUnion(itemId)
+          };
+          await updateDoc(ref, payload);
+        };
+
+        st.firebaseSubscribeLb = () => {
+          const q = query(collection(db, "students"), orderBy("score", "desc"), limit(100));
+          return onSnapshot(q, (snap) => {
+            const rows = [];
+            snap.forEach((d) => rows.push(Object.assign({ id: d.id }, d.data())));
+            st.leaderboardRows = rows;
+            if (st.currentPage === "leaderboard") {
+              window.switchPage("leaderboard");
+            }
+          });
+        };
+
+        let cachedModel = null;
+        st.askGeminiLazy = async (promptText) => {
+          if (!cachedModel) {
+            const aiMod = await import("https://www.gstatic.com/firebasejs/11.6.0/firebase-ai.js");
+            const ai = aiMod.getAI(app, { backend: new aiMod.GoogleAIBackend() });
+            cachedModel = aiMod.getGenerativeModel(ai, {
+              model: "gemini-2.5-flash",
+              systemInstruction: "You are the friendly Prompt Wash Arena AI Tutor for college students. Explain programming, DSA, and placement concepts clearly in plain language with a short code example."
+            });
+          }
+          const res = await cachedModel.generateContent(promptText);
+          return res.response.text();
+        };
+      } catch (err) {
+        console.warn("Firebase initialization notice:", err);
       }
     })();
-  </script>
-
-  <!-- React 18 Application -->
-  <script type="text/babel">
-    const { useState, useEffect, useMemo } = React;
-
-    // Built-in fallback data so Vercel NEVER shows an empty screen even if external JS is delayed
-    const FALLBACK_TRACKS = [
-      {
-        id: "java",
-        name: "Java Programming",
-        category: "Programming",
-        icon: "☕",
-        description: "Master core Java, Object-Oriented Programming, Collections, and JVM memory model.",
-        topics: [
-          {
-            id: "java_core",
-            name: "Core Java & OOP",
-            subtopics: [
-              {
-                id: "java_vars",
-                title: "Variables, JVM & Memory Model",
-                lesson: "Java stores primitive variables on the Stack and object instances on the Heap.",
-                example: "public class Main {\n  public static void main(String[] args) {\n    int score = 100;\n    System.out.println(\"Nexora Score: \" + score);\n  }\n}",
-                codingTask: {
-                  prompt: "Write a Java statement that prints or returns a valid output.",
-                  starterCode: "public class Solution {\n  public static int solve() {\n    return 42;\n  }\n}"
-                },
-                questions: [
-                  { id: "jv_q1", level: "Easy", points: 10, q: "Where are object instances stored in Java memory?", options: ["Heap Memory", "Stack", "Register", "BIOS"], answer: 0 },
-                  { id: "jv_q2", level: "Medium", points: 15, q: "Which keyword is used to inherit a class in Java?", options: ["implements", "extends", "inherits", "super"], answer: 1 }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ];
-
-    const FALLBACK_PROBLEMS = [
-      {
-        id: "prob_1",
-        number: 1,
-        title: "Two Sum Target Indices",
-        difficulty: "Easy",
-        points: 10,
-        topic: "Arrays & Hashing",
-        timerSeconds: 900,
-        description: "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
-        constraints: "2 <= nums.length <= 10^4",
-        example: "Input: nums = [2,7,11,15], target = 9 -> Output: [0,1]",
-        hints: [
-          "Hint 1: A brute-force nested loop takes O(n^2) time.",
-          "Hint 2: Use a HashMap to store seen numbers and their indices.",
-          "Hint 3: For each number x, check if (target - x) is already in the map."
-        ],
-        starters: {
-          java: "class Solution {\n  public int[] twoSum(int[] nums, int target) {\n    return new int[]{0, 1};\n  }\n}",
-          javascript: "function twoSum(nums, target) {\n  return [0, 1];\n}"
-        },
-        solutions: {
-          java: "Map<Integer, Integer> map = new HashMap<>();\nfor (int i = 0; i < nums.length; i++) {\n  int comp = target - nums[i];\n  if (map.containsKey(comp)) return new int[]{map.get(comp), i};\n  map.put(nums[i], i);\n}\nreturn new int[]{};",
-          javascript: "const map = new Map();\nfor (let i = 0; i < nums.length; i++) {\n  if (map.has(target - nums[i])) return [map.get(target - nums[i]), i];\n  map.set(nums[i], i);\n}"
-        }
-      }
-    ];
-
-    const EMPTY_PROFILE = {
-      name: "",
-      email: "",
-      score: 0,
-      learnScore: 0,
-      codeScore: 0,
-      solvedIds: [],
-      externalCerts: [],
-      uploadedCerts: [],
-      quizzesAttended: [],
-      topicsLearned: [],
-      solvedPrograms: []
-    };
-
-    function App() {
-      const [activePage, setActivePage] = useState("home");
-      const [user, setUser] = useState(null);
-      const [profile, setProfile] = useState(EMPTY_PROFILE);
-      const [showSignInModal, setShowSignInModal] = useState(false);
-      const [modalName, setModalName] = useState("");
-      const [modalEmail, setModalEmail] = useState("");
-      const [leaderboardRows, setLeaderboardRows] = useState([]);
-      const [lbFilter, setLbFilter] = useState("score");
-
-      // Learn Hub State
-      const tracksBank = window.QUESTION_BANK?.length ? window.QUESTION_BANK : FALLBACK_TRACKS;
-      const problemsBank = window.CODE_PROBLEMS?.length ? window.CODE_PROBLEMS : FALLBACK_PROBLEMS;
-
-      const [learnSearch, setLearnSearch] = useState("");
-      const [activeTrackId, setActiveTrackId] = useState(null);
-      const [activeTopicId, setActiveTopicId] = useState(null);
-      const [activeSubtopicId, setActiveSubtopicId] = useState(null);
-      const [activeSubTab, setActiveSubTab] = useState("lesson");
-      const [quizFeedback, setQuizFeedback] = useState({});
-      const [moduleCode, setModuleCode] = useState("");
-      const [moduleOutput, setModuleOutput] = useState("");
-
-      // Roadmaps
-      const [selectedRoadmapId, setSelectedRoadmapId] = useState(
-        window.DOMAIN_ROADMAPS?.[0]?.id || "java"
-      );
-
-      // Code Arena
-      const [arenaDiff, setArenaDiff] = useState("ALL");
-      const [arenaSearch, setArenaSearch] = useState("");
-      const [arenaVisible, setArenaVisible] = useState(25);
-      const [activeProbId, setActiveProbId] = useState(null);
-      const [arenaLang, setArenaLang] = useState("java");
-      const [arenaCode, setArenaCode] = useState("");
-      const [hintsUnlocked, setHintsUnlocked] = useState({});
-      const [showSolution, setShowSolution] = useState(false);
-      const [arenaTestResult, setArenaTestResult] = useState(null);
-      const [timerSec, setTimerSec] = useState(900);
-      const [timerPaused, setTimerPaused] = useState(false);
-
-      // MNC Prep
-      const [mncCompany, setMncCompany] = useState("Zoho");
-      const [mncRole, setMncRole] = useState("Software Development Engineer (SDE)");
-      const [mncLang, setMncLang] = useState("Java");
-      const [mncDiff, setMncDiff] = useState("Easy");
-      const [mncFeedback, setMncFeedback] = useState({});
-
-      // Resume Builder
-      const [resName, setResName] = useState("Student Name");
-      const [resContact, setResContact] = useState("student@university.edu | +91 98765 43210");
-      const [resCollege, setResCollege] = useState("B.E. / B.Tech Computer Science | CGPA: 9.0/10");
-      const [resSkills, setResSkills] = useState("Java, Python, C, Data Structures & Algorithms, SQL, React, Firebase, Git");
-      const [resProjects, setResProjects] = useState("Nexora AI Coding Arena (300+ DSA test suites) | Smart Campus Placement Tracker (94% test coverage)");
-
-      // Community
-      const [commInput, setCommInput] = useState("");
-      const [commMessages, setCommMessages] = useState([
-        { id: "m1", user: "OfficerJudy", text: "Welcome to Nexora Arena! Sign in at the top right to track your live score.", time: "Just now" }
-      ]);
-
-      // Activity
-      const [activityTab, setActivityTab] = useState("quizzes");
-      const [inspectedItem, setInspectedItem] = useState(null);
-
-      // Load per-user isolated storage
-      const loadProfileForUser = (uid, displayName, email) => {
-        const key = `nexora_profile_${uid}`;
-        let data = { ...EMPTY_PROFILE, name: displayName || "Student", email: email || "" };
-        try {
-          const saved = localStorage.getItem(key);
-          if (saved) {
-            data = { ...data, ...JSON.parse(saved) };
-          } else {
-            const legacy = localStorage.getItem("nexora_state_v9");
-            if (legacy) {
-              data = { ...data, ...JSON.parse(legacy) };
-              localStorage.setItem(key, JSON.stringify(data));
-              localStorage.removeItem("nexora_state_v9");
-            }
-          }
-        } catch (_) {}
-        return data;
-      };
-
-      // Restore active session on mount & listen to Firebase events
-      useEffect(() => {
-        try {
-          const savedSession = localStorage.getItem("nexora_auth_user");
-          if (savedSession) {
-            const uObj = JSON.parse(savedSession);
-            if (uObj && uObj.uid) {
-              setUser(uObj);
-              const prof = loadProfileForUser(uObj.uid, uObj.displayName, uObj.email);
-              setProfile(prof);
-              setResName(uObj.displayName || "Student");
-              if (uObj.email) setResContact(`${uObj.email} | +91 98765 43210`);
-            }
-          }
-        } catch (_) {}
-
-        const onFbAuth = async (e) => {
-          const fbUser = e.detail;
-          if (!fbUser) return;
-          const uObj = {
-            uid: fbUser.uid,
-            displayName: fbUser.displayName || "Student",
-            email: fbUser.email || ""
-          };
-          let prof = loadProfileForUser(uObj.uid, uObj.displayName, uObj.email);
-          if (window.FB_BRIDGE?.ensureUserDoc) {
-            try { prof = await window.FB_BRIDGE.ensureUserDoc(uObj, prof); } catch (_) {}
-          }
-          setUser(uObj);
-          setProfile({ ...prof });
-          setResName(uObj.displayName);
-          if (uObj.email) setResContact(`${uObj.email} | +91 98765 43210`);
-          localStorage.setItem("nexora_auth_user", JSON.stringify(uObj));
-          localStorage.setItem(`nexora_profile_${uObj.uid}`, JSON.stringify(prof));
-          setShowSignInModal(false);
-        };
-
-        const onFbLb = (e) => {
-          setLeaderboardRows(e.detail || []);
-        };
-
-        window.addEventListener("fb-auth-changed", onFbAuth);
-        window.addEventListener("fb-lb-changed", onFbLb);
-        return () => {
-          window.removeEventListener("fb-auth-changed", onFbAuth);
-          window.removeEventListener("fb-lb-changed", onFbLb);
-        };
-      }, []);
-
-      // Timer Effect
-      useEffect(() => {
-        if (!activeProbId || timerPaused) return;
-        const iv = setInterval(() => {
-          setTimerSec((s) => (s > 0 ? s - 1 : 0));
-        }, 1000);
-        return () => clearInterval(iv);
-      }, [activeProbId, timerPaused]);
-
-      const handleAuthButton = async () => {
-        if (user) {
-          // STRICT SIGN OUT: Clear session and reset all personal state to 0
-          if (window.FB_BRIDGE?.signOutUser) {
-            try { await window.FB_BRIDGE.signOutUser(); } catch (_) {}
-          }
-          try { localStorage.removeItem("nexora_auth_user"); } catch (_) {}
-          setUser(null);
-          setProfile(EMPTY_PROFILE);
-          setInspectedItem(null);
-          setResName("Student Name");
-          setResContact("student@university.edu | +91 98765 43210");
-          return;
-        }
-        setShowSignInModal(true);
-      };
-
-      const handleGooglePopupSignIn = async () => {
-        if (window.FB_BRIDGE?.signInGoogle) {
-          try {
-            await window.FB_BRIDGE.signInGoogle();
-            return;
-          } catch (err) {
-            alert("Notice: To use Google Popup on a new Vercel link, add your .vercel.app domain in Firebase Console -> Authentication -> Settings -> Authorized domains. You can sign in right below using your Name & Email!");
-          }
-        }
-      };
-
-      const handleDirectSignIn = async (e) => {
-        e.preventDefault();
-        if (!modalName.trim()) return;
-        const cleanName = modalName.trim();
-        const cleanEmail = (modalEmail.trim() || `${cleanName.toLowerCase().replace(/\s+/g, ".")}@student.edu`);
-        const uid = "user_" + cleanName.toLowerCase().replace(/[^a-z0-9]/g, "_");
-        const uObj = { uid, displayName: cleanName, email: cleanEmail };
-
-        let prof = loadProfileForUser(uid, cleanName, cleanEmail);
-        if (window.FB_BRIDGE?.ensureUserDoc) {
-          try { prof = await window.FB_BRIDGE.ensureUserDoc(uObj, prof); } catch (_) {}
-        }
-
-        setUser(uObj);
-        setProfile({ ...prof });
-        setResName(cleanName);
-        setResContact(`${cleanEmail} | +91 98765 43210`);
-        localStorage.setItem("nexora_auth_user", JSON.stringify(uObj));
-        localStorage.setItem(`nexora_profile_${uid}`, JSON.stringify(prof));
-        setShowSignInModal(false);
-      };
-
-      const awardPoints = async (itemId, pts, categoryType, metaObj) => {
-        if (!user) {
-          setShowSignInModal(true);
-          return false;
-        }
-        if (profile.solvedIds.includes(itemId)) return false;
-
-        const next = {
-          ...profile,
-          score: (profile.score || 0) + pts,
-          learnScore: categoryType === "learn" ? (profile.learnScore || 0) + pts : (profile.learnScore || 0),
-          codeScore: categoryType === "code" ? (profile.codeScore || 0) + pts : (profile.codeScore || 0),
-          solvedIds: [...profile.solvedIds, itemId],
-          quizzesAttended: [...profile.quizzesAttended],
-          topicsLearned: [...profile.topicsLearned],
-          solvedPrograms: [...profile.solvedPrograms]
-        };
-
-        if (categoryType === "learn" && metaObj?.quizTitle) {
-          next.quizzesAttended.unshift({
-            id: itemId,
-            title: metaObj.quizTitle,
-            domain: metaObj.domainName || "Learn Track",
-            points: pts,
-            date: new Date().toLocaleDateString()
-          });
-        }
-        if (categoryType === "learn" && metaObj?.subtopicTitle && !next.topicsLearned.includes(metaObj.subtopicTitle)) {
-          next.topicsLearned.unshift(metaObj.subtopicTitle);
-        }
-        if (categoryType === "code" && metaObj?.code) {
-          next.solvedPrograms.unshift(metaObj);
-        }
-
-        setProfile(next);
-        localStorage.setItem(`nexora_profile_${user.uid}`, JSON.stringify(next));
-
-        if (window.FB_BRIDGE?.syncScore) {
-          try { await window.FB_BRIDGE.syncScore(user, itemId, pts, categoryType, next); } catch (_) {}
-        }
-        return true;
-      };
-
-      const mncQuestions = useMemo(() => {
-        if (typeof window.generateMNCQuestions === "function") {
-          return window.generateMNCQuestions(mncCompany, mncRole, mncLang, "All Categories", mncDiff);
-        }
-        return [
-          {
-            id: `mnc_${mncCompany}_1`,
-            company: mncCompany,
-            role: mncRole,
-            difficulty: mncDiff,
-            number: 1,
-            points: 10,
-            q: `[${mncCompany} - ${mncLang}] Which data structure provides O(1) average time complexity for key lookups?`,
-            options: ["Hash Table / HashMap", "Linked List", "Binary Search Tree", "Bubble Sort Array"],
-            answer: 0,
-            explanation: "Hash tables compute an index using a hash function for O(1) average lookup."
-          }
-        ];
-      }, [mncCompany, mncRole, mncLang, mncDiff]);
-
-      const latexCode = useMemo(() => {
-        const projList = resProjects.split("|").map((s) => s.trim()).filter(Boolean);
-        const p1 = projList[0] || "Nexora AI Coding & Placement Platform";
-        const p2 = projList[1] || "Automated Cloud Analytics & Expense Tracker";
-        return `\\documentclass[letterpaper,11pt]{article}
-\\usepackage[margin=0.55in]{geometry}
-\\usepackage{enumitem}
-\\usepackage[hidelinks]{hyperref}
-\\pagenumbering{gobble}
-
-\\begin{document}
-\\begin{center}
-    {\\Huge \\textbf{${resName.toUpperCase()}}} \\\\[4pt]
-    \\small ${resContact.replace(/\|/g, "$|$")}
-\\end{center}
-
-\\section*{Education}
-\\textbf{${resCollege.replace(/&/g, "\\&")}} \\hfill 2023 -- 2027
-
-\\section*{Technical Skills}
-\\begin{itemize}[leftmargin=0.15in, noitemsep]
-  \\item \\textbf{Core Technologies:} ${resSkills.replace(/&/g, "\\&")}
-\\end{itemize}
-
-\\section*{Key Engineering Projects}
-\\textbf{${p1.replace(/&/g, "\\&")}} \\hfill 2026
-\\begin{itemize}[leftmargin=0.2in, noitemsep]
-  \\item Engineered modular architecture in React and Firebase across 300+ automated test suites.
-\\end{itemize}
-
-\\textbf{${p2.replace(/&/g, "\\&")}} \\hfill 2025
-\\begin{itemize}[leftmargin=0.2in, noitemsep]
-  \\item Built end-to-end analytics pipeline with 94\\% test coverage.
-\\end{itemize}
-\\end{document}`;
-      }, [resName, resContact, resCollege, resSkills, resProjects]);
-
-      const formatMMSS = (sec) => {
-        const m = Math.floor(Math.max(0, sec) / 60);
-        const s = Math.max(0, sec) % 60;
-        return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
-      };
-
-      const navItems = [
-        { id: "home", label: "Home" },
-        { id: "learn", label: "Learn" },
-        { id: "roadmaps", label: "Roadmaps" },
-        { id: "arena", label: "Code Arena" },
-        { id: "placements", label: "MNC Prep" },
-        { id: "resume", label: "Resume" },
-        { id: "studio", label: "Projects" },
-        { id: "community", label: "Community" },
-        { id: "certified", label: "Certifications" },
-        { id: "mycerts", label: "My Certs" },
-        { id: "vault", label: "My Activity" },
-        { id: "leaderboard", label: "Leaderboard" }
-      ];
-
-      return (
-        <div>
-          {/* SIGN IN MODAL (Works on Vercel even before domain whitelisting) */}
-          {showSignInModal && (
-            <div className="modal-backdrop" onClick={() => setShowSignInModal(false)}>
-              <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.8rem" }}>
-                  <h3>⚡ Sign in to Nexora Arena</h3>
-                  <button className="btn-secondary" style={{ minHeight: "28px", padding: "0.2rem 0.5rem" }} onClick={() => setShowSignInModal(false)}>✕</button>
-                </div>
-                <p style={{ fontSize: "0.82rem", color: "var(--text-muted)", marginBottom: "0.9rem" }}>
-                  Sign in with Google or enter your student credentials below to sync your live score to the Firebase Leaderboard.
-                </p>
-                <button
-                  type="button"
-                  className="btn-primary"
-                  style={{ width: "100%", marginBottom: "0.85rem", padding: "0.55rem" }}
-                  onClick={handleGooglePopupSignIn}
-                >
-                  🌐 Continue with Google Popup
-                </button>
-                <div style={{ textAlign: "center", fontSize: "0.75rem", color: "var(--text-muted)", marginBottom: "0.75rem" }}>
-                  — OR INSTANT STUDENT SIGN IN —
-                </div>
-                <form onSubmit={handleDirectSignIn} style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
-                  <input
-                    className="input-control"
-                    placeholder="Your Full Name (e.g. Yuvashree A)"
-                    value={modalName}
-                    onChange={(e) => setModalName(e.target.value)}
-                    required
-                  />
-                  <input
-                    className="input-control"
-                    type="email"
-                    placeholder="Your Email (e.g. student@edu.in)"
-                    value={modalEmail}
-                    onChange={(e) => setModalEmail(e.target.value)}
-                  />
-                  <button type="submit" className="btn-secondary" style={{ width: "100%", borderColor: "#60a5fa" }}>
-                    ✓ Sign In &amp; Load My Account
-                  </button>
-                </form>
-              </div>
-            </div>
-          )}
-
-          {/* SINGLE-ROW NAVBAR */}
-          <header className="navbar">
-            <div className="navbar-inner">
-              <div className="brand" onClick={() => setActivePage("home")}>
-                <div className="brand-logo">⚡</div>
-                <span>Nexora <span className="gradient-text">Arena</span></span>
-              </div>
-
-              <nav className="nav-links">
-                {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    className={`nav-btn ${activePage === item.id ? "active" : ""}`}
-                    onClick={() => setActivePage(item.id)}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </nav>
-
-              {/* STRICT AUTH ZONE: Shows 0 personal data when signed out */}
-              <div className="auth-zone">
-                {user && (
-                  <>
-                    <span className="score-chip">⚡ {profile.score || 0} pts</span>
-                    <span className="user-chip">{user.displayName || user.email}</span>
-                  </>
-                )}
-                <button
-                  type="button"
-                  className="btn-primary"
-                  style={{ padding: "0.3rem 0.85rem", minHeight: "30px", fontSize: "0.76rem", borderRadius: "999px" }}
-                  onClick={handleAuthButton}
-                >
-                  {user ? "Sign out" : "Sign in"}
-                </button>
-              </div>
-            </div>
-          </header>
-
-          <main className="container">
-            {/* ==================== 1. HOME PAGE ==================== */}
-            {activePage === "home" && (
-              <section>
-                <div className="home-hero-grid">
-                  <div>
-                    <div className="hero-eyebrow">✨ All-In-One Engineering, Coding &amp; Placement Ecosystem</div>
-                    <h1 className="hero-title">
-                      Learn Concepts. Solve Problems.<br />
-                      <span className="gradient-text">Crack Top MNC Placements.</span>
-                    </h1>
-                    <p className="hero-sub">
-                      Master 45+ domains with interactive memory diagrams, solve 300 timed Code Arena challenges with progressive hints, practice 1,800+ company-specific MNC questions, and generate ATS-ready Overleaf LaTeX resumes.
-                    </p>
-                    <div className="hero-cta-row">
-                      <button className="btn-primary" onClick={() => setActivePage("learn")}>🚀 Start Learning Free →</button>
-                      <button className="btn-secondary" onClick={() => setActivePage("arena")}>💻 Open Code Arena</button>
-                      <button className="btn-secondary" onClick={() => setActivePage("placements")}>🏢 MNC Question Bank</button>
-                    </div>
-                    <div className="hero-trust-pills">
-                      <span className="trust-pill">✓ Java • Python • C • SQL • DSA</span>
-                      <span className="trust-pill">✓ 3-Hint Progressive Unlock</span>
-                      <span className="trust-pill">✓ One-Click Overleaf .tex Export</span>
-                      <span className="trust-pill">✓ Live Firebase Leaderboard</span>
-                    </div>
-                  </div>
-
-                  <aside className="hero-command-card">
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid var(--border)", paddingBottom: "0.6rem" }}>
-                      <div>
-                        <span className={`badge ${user ? "badge-easy" : "badge-info"}`}>
-                          {user ? "✓ VERIFIED ACCOUNT" : "🔒 GUEST MODE (SIGNED OUT)"}
-                        </span>
-                        <h3 style={{ fontSize: "1rem", marginTop: "0.2rem" }}>
-                          {user ? `Welcome, ${user.displayName}!` : "Sign in to View Your Account"}
-                        </h3>
-                      </div>
-                      <div style={{ textAlign: "right" }}>
-                        <div style={{ fontSize: "1.25rem", fontWeight: 800, color: "#60a5fa" }}>
-                          {user ? `${profile.score || 0} pts` : "—"}
-                        </div>
-                        <div style={{ fontSize: "0.7rem", color: "var(--text-muted)" }}>
-                          {user ? "Your Live Score" : "Sign in for Score"}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="cmd-row" onClick={() => setActivePage("learn")}>
-                      <div>
-                        <strong style={{ fontSize: "0.85rem", color: "#93c5fd" }}>📚 Interactive Domain Lessons</strong>
-                        <div style={{ fontSize: "0.74rem", color: "var(--text-muted)" }}>Theory + SVG Diagrams + 8 MCQs</div>
-                      </div>
-                      <span className="badge badge-info">
-                        {user ? `${profile.topicsLearned.length} Done →` : "Sign in →"}
-                      </span>
-                    </div>
-
-                    <div className="cmd-row" onClick={() => setActivePage("arena")}>
-                      <div>
-                        <strong style={{ fontSize: "0.85rem", color: "#34d399" }}>⏱️ Timed Code Arena (300)</strong>
-                        <div style={{ fontSize: "0.74rem", color: "var(--text-muted)" }}>15m Easy • 30m Medium • 45m Hard</div>
-                      </div>
-                      <span className="badge badge-easy">
-                        {user ? `${profile.solvedPrograms.length} Solved →` : "Sign in →"}
-                      </span>
-                    </div>
-
-                    <div className="cmd-row" onClick={() => setActivePage("resume")}>
-                      <div>
-                        <strong style={{ fontSize: "0.85rem", color: "#fbbf24" }}>🍃 FAANG Overleaf Resume</strong>
-                        <div style={{ fontSize: "0.74rem", color: "var(--text-muted)" }}>Instant .tex generator &amp; ATS scanner</div>
-                      </div>
-                      <span className="badge badge-medium">Build .tex →</span>
-                    </div>
-
-                    <div style={{ display: "flex", gap: "0.5rem" }}>
-                      <button className="btn-secondary" style={{ flex: 1 }} onClick={() => setActivePage("vault")}>📊 My Activity</button>
-                      <button className="btn-secondary" style={{ flex: 1 }} onClick={() => setActivePage("leaderboard")}>🏆 Leaderboard</button>
-                    </div>
-                  </aside>
-                </div>
-
-                <div className="stats-strip">
-                  <div className="stat-card" onClick={() => setActivePage("learn")} style={{ cursor: "pointer" }}>
-                    <div className="stat-icon">🧠</div>
-                    <div><div className="stat-val gradient-text">45+ Domains</div><div style={{ fontSize: "0.76rem", color: "var(--text-muted)" }}>Visual Lessons</div></div>
-                  </div>
-                  <div className="stat-card" onClick={() => setActivePage("arena")} style={{ cursor: "pointer" }}>
-                    <div className="stat-icon">⚡</div>
-                    <div><div className="stat-val gradient-text">300 Problems</div><div style={{ fontSize: "0.76rem", color: "var(--text-muted)" }}>Timed Code Arena</div></div>
-                  </div>
-                  <div className="stat-card" onClick={() => setActivePage("placements")} style={{ cursor: "pointer" }}>
-                    <div className="stat-icon">🏢</div>
-                    <div><div className="stat-val gradient-text">1,800+ MCQs</div><div style={{ fontSize: "0.76rem", color: "var(--text-muted)" }}>MNC Prep Bank</div></div>
-                  </div>
-                  <div className="stat-card" onClick={() => setActivePage("certified")} style={{ cursor: "pointer" }}>
-                    <div className="stat-icon">🎓</div>
-                    <div><div className="stat-val gradient-text">225+ Courses</div><div style={{ fontSize: "0.76rem", color: "var(--text-muted)" }}>Free Certifications</div></div>
-                  </div>
-                </div>
-
-                <div className="bento-grid">
-                  <article className="bento-card">
-                    <div>
-                      <div className="bento-top"><div className="bento-icon">📘</div><span className="badge badge-info">STEP 1 • LEARN</span></div>
-                      <h3>45+ Separated Tech Domains</h3>
-                      <p style={{ fontSize: "0.82rem", color: "var(--text-muted)", marginTop: "0.3rem" }}>Visual SVG diagrams, native code examples, and 8 graded MCQs per topic.</p>
-                    </div>
-                    <button className="btn-primary" onClick={() => setActivePage("learn")}>Open Learn Hub →</button>
-                  </article>
-
-                  <article className="bento-card">
-                    <div>
-                      <div className="bento-top"><div className="bento-icon">💻</div><span className="badge badge-easy">STEP 2 • SOLVE</span></div>
-                      <h3>300-Problem Timed Code Arena</h3>
-                      <p style={{ fontSize: "0.82rem", color: "var(--text-muted)", marginTop: "0.3rem" }}>Solve Easy, Medium, and Hard problems with 3 progressive hints.</p>
-                    </div>
-                    <button className="btn-primary" onClick={() => setActivePage("arena")}>Enter Code Arena →</button>
-                  </article>
-
-                  <article className="bento-card">
-                    <div>
-                      <div className="bento-top"><div className="bento-icon">🏢</div><span className="badge badge-medium">STEP 3 • PLACEMENTS</span></div>
-                      <h3>MNC Placement Question Bank</h3>
-                      <p style={{ fontSize: "0.82rem", color: "var(--text-muted)", marginTop: "0.3rem" }}>Practice 100 Easy, 100 Medium &amp; 100 Hard questions per company.</p>
-                    </div>
-                    <button className="btn-primary" onClick={() => setActivePage("placements")}>Practice MNC Prep →</button>
-                  </article>
-                </div>
-              </section>
-            )}
-
-            {/* ==================== 2. LEARN HUB ==================== */}
-            {activePage === "learn" && (
-              <section>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.65rem", marginBottom: "1rem" }}>
-                  <h2>Interactive Learning Hub (<span className="gradient-text">45+ Domains</span>)</h2>
-                  <div style={{ display: "flex", gap: "0.45rem" }}>
-                    <input
-                      className="input-control"
-                      style={{ width: "220px" }}
-                      placeholder="Search domains..."
-                      value={learnSearch}
-                      onChange={(e) => setLearnSearch(e.target.value)}
-                    />
-                    {activeTrackId && (
-                      <button className="btn-secondary" onClick={() => setActiveTrackId(null)}>← All Domains</button>
-                    )}
-                  </div>
-                </div>
-
-                {!activeTrackId ? (
-                  <div className="grid-cards">
-                    {tracksBank
-                      .filter((t) => !learnSearch || t.name.toLowerCase().includes(learnSearch.toLowerCase()))
-                      .map((track) => (
-                        <div key={track.id} className="card" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                          <div>
-                            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.4rem" }}>
-                              <span style={{ fontSize: "1.5rem" }}>{track.icon}</span>
-                              <span className="badge badge-info">{track.category}</span>
-                            </div>
-                            <h3>{track.name}</h3>
-                            <p style={{ fontSize: "0.82rem", color: "var(--text-muted)", margin: "0.4rem 0 0.8rem" }}>{track.description}</p>
-                          </div>
-                          <button
-                            className="btn-primary"
-                            onClick={() => {
-                              setActiveTrackId(track.id);
-                              setActiveTopicId(track.topics[0].id);
-                              setActiveSubtopicId(track.topics[0].subtopics[0].id);
-                              setActiveSubTab("lesson");
-                              setModuleCode(track.topics[0].subtopics[0].codingTask?.starterCode || "");
-                            }}
-                          >
-                            Open {track.name} →
-                          </button>
-                        </div>
-                      ))}
-                  </div>
-                ) : (
-                  (() => {
-                    const track = tracksBank.find((t) => t.id === activeTrackId) || tracksBank[0];
-                    const activeTopic = track.topics.find((t) => t.id === activeTopicId) || track.topics[0];
-                    const activeSub = activeTopic.subtopics.find((s) => s.id === activeSubtopicId) || activeTopic.subtopics[0];
-                    return (
-                      <div style={{ display: "grid", gridTemplateColumns: "270px 1fr", gap: "1.1rem" }}>
-                        <div className="card" style={{ maxHeight: "72vh", overflowY: "auto" }}>
-                          <h3 style={{ marginBottom: "0.6rem" }}>{track.icon} {track.name}</h3>
-                          {track.topics.map((tp) => (
-                            <div key={tp.id} style={{ marginBottom: "0.8rem" }}>
-                              <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "#93c5fd", marginBottom: "0.3rem" }}>{tp.name}</div>
-                              <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
-                                {tp.subtopics.map((sb) => (
-                                  <button
-                                    key={sb.id}
-                                    className={sb.id === activeSub.id ? "btn-primary" : "btn-secondary"}
-                                    style={{ justifyContent: "flex-start", textAlign: "left", fontSize: "0.77rem" }}
-                                    onClick={() => {
-                                      setActiveTopicId(tp.id);
-                                      setActiveSubtopicId(sb.id);
-                                      setActiveSubTab("lesson");
-                                      setModuleCode(sb.codingTask?.starterCode || "");
-                                      setModuleOutput("");
-                                    }}
-                                  >
-                                    {sb.title}
-                                  </button>
-                                ))}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-
-                        <div className="card">
-                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem", marginBottom: "0.9rem", borderBottom: "1px solid var(--border)", paddingBottom: "0.8rem" }}>
-                            <h2>{activeSub.title}</h2>
-                            <div style={{ display: "flex", gap: "0.4rem" }}>
-                              <button className={activeSubTab === "lesson" ? "btn-primary" : "btn-secondary"} onClick={() => setActiveSubTab("lesson")}>1. 📊 Theory</button>
-                              <button className={activeSubTab === "quiz" ? "btn-primary" : "btn-secondary"} onClick={() => setActiveSubTab("quiz")}>2. ✅ Quiz</button>
-                              <button className={activeSubTab === "coding" ? "btn-primary" : "btn-secondary"} onClick={() => setActiveSubTab("coding")}>3. 💻 Code Lab</button>
-                            </div>
-                          </div>
-
-                          {activeSubTab === "lesson" && (
-                            <div>
-                              {window.generateVisualDiagramSVG && (
-                                <div
-                                  style={{ marginBottom: "0.85rem" }}
-                                  dangerouslySetInnerHTML={{ __html: window.generateVisualDiagramSVG(activeSub.title, track.name) }}
-                                />
-                              )}
-                              <div style={{ whiteSpace: "pre-line", fontSize: "0.9rem", marginBottom: "0.85rem" }}>{activeSub.lesson}</div>
-                              <pre className="code-block"><code>{activeSub.example}</code></pre>
-                            </div>
-                          )}
-
-                          {activeSubTab === "quiz" && (
-                            <div className="fixed-pane-scroll" style={{ height: "500px" }}>
-                              {(activeSub.questions || []).map((qObj, idx) => (
-                                <div key={qObj.id} className="card" style={{ background: "#081024", padding: "0.9rem" }}>
-                                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.4rem" }}>
-                                    <strong>Question {idx + 1}</strong>
-                                    <span className="badge badge-info">{qObj.level} • {qObj.points} pts {user && profile.solvedIds.includes(qObj.id) ? "✓ Solved" : ""}</span>
-                                  </div>
-                                  <p style={{ fontSize: "0.88rem", marginBottom: "0.6rem" }}>{qObj.q}</p>
-                                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: "0.4rem" }}>
-                                    {qObj.options.map((opt, oIdx) => (
-                                      <button
-                                        key={oIdx}
-                                        className="btn-secondary"
-                                        style={{ justifyContent: "flex-start", textAlign: "left" }}
-                                        onClick={async () => {
-                                          if (!user) {
-                                            setShowSignInModal(true);
-                                            return;
-                                          }
-                                          if (oIdx === qObj.answer) {
-                                            const added = await awardPoints(qObj.id, qObj.points, "learn", {
-                                              quizTitle: `${activeSub.title} (Q#${idx + 1})`,
-                                              subtopicTitle: `${track.name}: ${activeSub.title}`,
-                                              domainName: track.name
-                                            });
-                                            setQuizFeedback({ ...quizFeedback, [qObj.id]: `✅ Correct! ${added ? `+${qObj.points} pts added!` : "(Already solved)"}` });
-                                          } else {
-                                            setQuizFeedback({ ...quizFeedback, [qObj.id]: "❌ Try again!" });
-                                          }
-                                        }}
-                                      >
-                                        {String.fromCharCode(65 + oIdx)}. {opt}
-                                      </button>
-                                    ))}
-                                  </div>
-                                  {quizFeedback[qObj.id] && (
-                                    <div style={{ marginTop: "0.4rem", fontSize: "0.82rem", fontWeight: 700, color: quizFeedback[qObj.id].startsWith("✅") ? "#34d399" : "#fbbf24" }}>
-                                      {quizFeedback[qObj.id]}
-                                    </div>
-                                  )}
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
-                          {activeSubTab === "coding" && (
-                            <div>
-                              <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginBottom: "0.6rem" }}>{activeSub.codingTask?.prompt}</p>
-                              <textarea className="code-editor" value={moduleCode} onChange={(e) => setModuleCode(e.target.value)} />
-                              <button
-                                className="btn-primary"
-                                style={{ marginTop: "0.7rem" }}
-                                onClick={async () => {
-                                  if (!user) { setShowSignInModal(true); return; }
-                                  await awardPoints(`modlab_${activeSub.id}`, 15, "code", {
-                                    id: `modlab_${activeSub.id}`,
-                                    title: `Module Lab (${track.name})`,
-                                    lang: track.name,
-                                    code: moduleCode,
-                                    date: new Date().toLocaleDateString()
-                                  });
-                                  setModuleOutput("✅ Module Code Verified! (+15 pts saved to your account)");
-                                }}
-                              >
-                                ▶ Run &amp; Submit Module Code (+15 pts)
-                              </button>
-                              {moduleOutput && <div className="card" style={{ marginTop: "0.7rem", color: "#34d399" }}>{moduleOutput}</div>}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })()
-                )}
-              </section>
-            )}
-
-            {/* ==================== 3. ROADMAPS ==================== */}
-            {activePage === "roadmaps" && (
-              <section>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
-                  <h2>Step-by-Step <span className="gradient-text">Domain Roadmaps</span></h2>
-                  {window.DOMAIN_ROADMAPS?.length > 0 && (
-                    <select
-                      className="input-control"
-                      style={{ width: "260px" }}
-                      value={selectedRoadmapId}
-                      onChange={(e) => setSelectedRoadmapId(e.target.value)}
-                    >
-                      {window.DOMAIN_ROADMAPS.map((r) => (
-                        <option key={r.id} value={r.id}>{r.icon} {r.name}</option>
-                      ))}
-                    </select>
-                  )}
-                </div>
-                {(() => {
-                  const rm = (window.DOMAIN_ROADMAPS || []).find((r) => r.id === selectedRoadmapId) || window.DOMAIN_ROADMAPS?.[0];
-                  if (!rm) {
-                    return <div className="card">Select any domain in the Learn tab to practice its full curriculum!</div>;
-                  }
-                  return (
-                    <div className="single-col-list">
-                      {rm.steps.map((st, idx) => (
-                        <div key={idx} className="card" style={{ borderLeft: "4px solid #8b5cf6" }}>
-                          <span className="badge badge-info">{st.phase} • {st.duration}</span>
-                          <h3 style={{ margin: "0.3rem 0" }}>Stage {idx + 1}: {st.title}</h3>
-                          <p style={{ fontSize: "0.84rem", color: "var(--text-muted)", marginBottom: "0.6rem" }}>{st.theorySummary}</p>
-                          <a href={st.ytUrl} target="_blank" rel="noreferrer" className="btn-secondary">📺 Watch Full Course ({st.educator}) ↗</a>
-                        </div>
-                      ))}
-                    </div>
-                  );
-                })()}
-              </section>
-            )}
-
-            {/* ==================== 4. CODE ARENA ==================== */}
-            {activePage === "arena" && (
-              <section>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.6rem", marginBottom: "0.9rem" }}>
-                  <h2>Code Arena — <span className="gradient-text">300 Timed Problems</span></h2>
-                  <div style={{ display: "flex", gap: "0.45rem" }}>
-                    <select className="input-control" style={{ width: "145px" }} value={arenaDiff} onChange={(e) => setArenaDiff(e.target.value)}>
-                      <option value="ALL">All (300)</option>
-                      <option value="Easy">Easy (15m)</option>
-                      <option value="Medium">Medium (30m)</option>
-                      <option value="Hard">Hard (45m)</option>
-                    </select>
-                    <input className="input-control" style={{ width: "185px" }} placeholder="Search problems..." value={arenaSearch} onChange={(e) => setArenaSearch(e.target.value)} />
-                  </div>
-                </div>
-
-                {activeProbId && (() => {
-                  const p = problemsBank.find((x) => x.id === activeProbId);
-                  if (!p) return null;
-                  const unlocked = hintsUnlocked[p.id] || 0;
-                  return (
-                    <div className="card" style={{ marginBottom: "1rem", borderColor: "#60a5fa" }}>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem", marginBottom: "0.7rem" }}>
-                        <h3>#{p.number}. {p.title} ({p.difficulty} • {p.points} pts)</h3>
-                        <div style={{ display: "flex", gap: "0.45rem", alignItems: "center" }}>
-                          <span className="badge badge-info">⏱️ {formatMMSS(timerSec)}</span>
-                          <button className="btn-secondary" onClick={() => setTimerPaused(!timerPaused)}>{timerPaused ? "▶ Resume" : "⏸ Pause"}</button>
-                          <button className="btn-secondary" onClick={() => setActiveProbId(null)}>✕ Close</button>
-                        </div>
-                      </div>
-                      <p style={{ fontSize: "0.9rem", marginBottom: "0.5rem" }}>{p.description}</p>
-                      <pre className="code-block"><code>{p.example}</code></pre>
-
-                      <div className="card" style={{ background: "#070d1f", margin: "0.7rem 0" }}>
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                          <strong>💡 Progressive Hints ({unlocked}/3 Unlocked)</strong>
-                          <div style={{ display: "flex", gap: "0.4rem" }}>
-                            {unlocked < 3 && (
-                              <button className="btn-secondary" onClick={() => setHintsUnlocked({ ...hintsUnlocked, [p.id]: unlocked + 1 })}>
-                                Unlock Hint {unlocked + 1}
-                              </button>
-                            )}
-                            <button
-                              className={unlocked >= 3 ? "btn-primary" : "btn-locked"}
-                              onClick={() => {
-                                if (unlocked < 3) alert("Unlock all 3 hints first!");
-                                else setShowSolution(!showSolution);
-                              }}
-                            >
-                              {unlocked >= 3 ? "🔓 Toggle Solution" : "🔒 Solution Locked"}
-                            </button>
-                          </div>
-                        </div>
-                        {unlocked > 0 && (
-                          <div style={{ marginTop: "0.5rem" }}>
-                            {(p.hints || []).slice(0, unlocked).map((h, i) => (
-                              <div key={i} style={{ fontSize: "0.8rem", padding: "0.3rem 0", color: "#93c5fd" }}>• {h}</div>
-                            ))}
-                          </div>
-                        )}
-                        {showSolution && unlocked >= 3 && (
-                          <pre className="code-block"><code>{p.solutions?.[arenaLang] || p.solutions?.javascript}</code></pre>
-                        )}
-                      </div>
-
-                      <textarea className="code-editor" value={arenaCode} onChange={(e) => setArenaCode(e.target.value)} />
-                      <button
-                        className="btn-primary"
-                        style={{ marginTop: "0.7rem" }}
-                        onClick={async () => {
-                          if (!user) { setShowSignInModal(true); return; }
-                          await awardPoints(p.id, p.points, "code", {
-                            id: p.id,
-                            title: p.title,
-                            lang: arenaLang,
-                            code: arenaCode,
-                            date: new Date().toLocaleDateString()
-                          });
-                          setArenaTestResult(`✅ All 6/6 Hidden Tests Passed! (+${p.points} pts added to your account)`);
-                        }}
-                      >
-                        ▶ Run 6 Hidden Tests
-                      </button>
-                      {arenaTestResult && <div className="card" style={{ marginTop: "0.6rem", color: "#34d399" }}>{arenaTestResult}</div>}
-                    </div>
-                  );
-                })()}
-
-                <div className="single-col-list">
-                  {problemsBank
-                    .filter((p) => (arenaDiff === "ALL" || p.difficulty === arenaDiff) && (!arenaSearch || p.title.toLowerCase().includes(arenaSearch.toLowerCase())))
-                    .slice(0, arenaVisible)
-                    .map((p) => (
-                      <div key={p.id} className="single-row-item">
-                        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
-                          <span style={{ fontFamily: "monospace", color: "var(--text-muted)" }}>#{p.number}</span>
-                          <span className="badge badge-info">{p.difficulty} • {p.points} pts</span>
-                          <strong>{p.title}</strong>
-                          {user && profile.solvedIds.includes(p.id) && <span className="badge badge-easy">✓ Solved</span>}
-                        </div>
-                        <button
-                          className="btn-primary"
-                          onClick={() => {
-                            setActiveProbId(p.id);
-                            setArenaCode(p.starters?.[arenaLang] || p.starters?.javascript || "");
-                            setTimerSec(p.timerSeconds || 900);
-                            setShowSolution(false);
-                            setArenaTestResult(null);
-                          }}
-                        >
-                          Solve Problem →
-                        </button>
-                      </div>
-                    ))}
-                </div>
-              </section>
-            )}
-
-            {/* ==================== 5. MNC PREP ==================== */}
-            {activePage === "placements" && (
-              <section>
-                <h2 style={{ marginBottom: "0.8rem" }}>MNC Placement <span className="gradient-text">Question Bank</span></h2>
-                <div className="card" style={{ marginBottom: "1rem", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "0.6rem" }}>
-                  <select className="input-control" value={mncCompany} onChange={(e) => setMncCompany(e.target.value)}>
-                    {(window.MNC_COMPANIES_META || [{ id: "Zoho", name: "Zoho" }, { id: "TCS", name: "TCS" }, { id: "Amazon", name: "Amazon" }]).map((c) => (
-                      <option key={c.id} value={c.id}>{c.name}</option>
-                    ))}
-                  </select>
-                  <select className="input-control" value={mncDiff} onChange={(e) => setMncDiff(e.target.value)}>
-                    <option value="Easy">Easy (100 Qs)</option>
-                    <option value="Medium">Medium (100 Qs)</option>
-                    <option value="Hard">Hard (100 Qs)</option>
-                  </select>
-                </div>
-
-                <div className="single-col-list">
-                  {mncQuestions.slice(0, 20).map((qObj) => (
-                    <div key={qObj.id} className="card">
-                      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.4rem" }}>
-                        <span className="badge badge-info">{qObj.company} • {qObj.difficulty} #{qObj.number} ({qObj.points} pts)</span>
-                        {user && profile.solvedIds.includes(qObj.id) && <span className="badge badge-easy">✓ Solved</span>}
-                      </div>
-                      <p style={{ fontWeight: 600, marginBottom: "0.6rem" }}>{qObj.q}</p>
-                      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "0.45rem" }}>
-                        {qObj.options.map((opt, oIdx) => (
-                          <button
-                            key={oIdx}
-                            className="btn-secondary"
-                            style={{ justifyContent: "flex-start", textAlign: "left" }}
-                            onClick={async () => {
-                              if (!user) { setShowSignInModal(true); return; }
-                              if (oIdx === qObj.answer) {
-                                await awardPoints(qObj.id, qObj.points, "learn", {
-                                  quizTitle: `${qObj.company} (${qObj.difficulty} #${qObj.number})`,
-                                  subtopicTitle: `${qObj.company} - ${qObj.role}`,
-                                  domainName: "MNC Placement"
-                                });
-                                setMncFeedback({ ...mncFeedback, [qObj.id]: `✅ Correct! (+${qObj.points} pts) — ${qObj.explanation}` });
-                              } else {
-                                setMncFeedback({ ...mncFeedback, [qObj.id]: `❌ Hint: ${qObj.explanation}` });
-                              }
-                            }}
-                          >
-                            {String.fromCharCode(65 + oIdx)}. {opt}
-                          </button>
-                        ))}
-                      </div>
-                      {mncFeedback[qObj.id] && (
-                        <div style={{ marginTop: "0.45rem", fontSize: "0.82rem", color: mncFeedback[qObj.id].startsWith("✅") ? "#34d399" : "#fbbf24" }}>
-                          {mncFeedback[qObj.id]}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* ==================== 6. OVERLEAF RESUME ==================== */}
-            {activePage === "resume" && (
-              <section>
-                <h2 style={{ marginBottom: "0.8rem" }}>FAANG &amp; MANGOS <span className="gradient-text">Overleaf LaTeX Resume Builder</span></h2>
-                <div className="card" style={{ marginBottom: "1rem", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "0.6rem" }}>
-                  <input className="input-control" value={resName} onChange={(e) => setResName(e.target.value)} placeholder="Full Name" />
-                  <input className="input-control" value={resContact} onChange={(e) => setResContact(e.target.value)} placeholder="Email & Phone" />
-                  <input className="input-control" value={resCollege} onChange={(e) => setResCollege(e.target.value)} placeholder="College & CGPA" />
-                  <input className="input-control" value={resSkills} onChange={(e) => setResSkills(e.target.value)} placeholder="Skills" />
-                </div>
-                <div className="card">
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                    <strong>Generated Overleaf .tex Code</strong>
-                    <button className="btn-primary" onClick={() => { navigator.clipboard.writeText(latexCode); alert("Copied LaTeX code!"); }}>📋 Copy LaTeX Code</button>
-                  </div>
-                  <textarea className="code-editor" style={{ minHeight: "300px" }} readOnly value={latexCode} />
-                </div>
-              </section>
-            )}
-
-            {/* ==================== 7. PROJECTS STUDIO ==================== */}
-            {activePage === "studio" && (
-              <section>
-                <h2 style={{ marginBottom: "0.8rem" }}>Day 1–Day 5 <span className="gradient-text">Project &amp; Prompt Studio</span></h2>
-                <div className="single-col-list">
-                  {(window.SKILL_PROJECT_STUDIO?.projects || [
-                    { id: "p1", title: "AI Resume & ATS Analyzer", difficulty: "Medium", summary: "Full-stack resume parser with keyword scoring.", dayByDayPlan: ["Day 1: Setup React UI", "Day 2: Build LaTeX generator", "Day 3: Add ATS regex matcher", "Day 4: Connect Firebase Auth", "Day 5: Deploy to Vercel"] }
-                  ]).map((p) => (
-                    <div key={p.id} className="card">
-                      <h3>🛠️ {p.title} ({p.difficulty})</h3>
-                      <p style={{ fontSize: "0.84rem", color: "var(--text-muted)", margin: "0.35rem 0 0.7rem" }}>{p.summary}</p>
-                      <ul style={{ paddingLeft: "1.2rem", fontSize: "0.82rem" }}>
-                        {p.dayByDayPlan.map((d, i) => <li key={i}>{d}</li>)}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* ==================== 8. COMMUNITY ==================== */}
-            {activePage === "community" && (
-              <section>
-                <h2 style={{ marginBottom: "0.8rem" }}>Student <span className="gradient-text">Community Lounge</span></h2>
-                <div className="card">
-                  <div className="fixed-pane-scroll" style={{ height: "300px", marginBottom: "0.8rem" }}>
-                    {commMessages.map((m) => (
-                      <div key={m.id} className="card" style={{ background: "#081024", padding: "0.75rem" }}>
-                        <strong style={{ color: "#93c5fd" }}>@{m.user}</strong> <span style={{ fontSize: "0.72rem", color: "var(--text-muted)" }}>{m.time}</span>
-                        <p style={{ fontSize: "0.85rem", marginTop: "0.25rem" }}>{m.text}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <div style={{ display: "flex", gap: "0.5rem" }}>
-                    <input className="input-control" value={commInput} onChange={(e) => setCommInput(e.target.value)} placeholder="Ask a question or tag @someone..." />
-                    <button
-                      className="btn-primary"
-                      onClick={() => {
-                        if (!user) { setShowSignInModal(true); return; }
-                        if (!commInput.trim()) return;
-                        setCommMessages([...commMessages, { id: Date.now().toString(), user: user.displayName.replace(/\s+/g, ""), text: commInput, time: "Just now" }]);
-                        setCommInput("");
-                      }}
-                    >
-                      Post →
-                    </button>
-                  </div>
-                </div>
-              </section>
-            )}
-
-            {/* ==================== 9. LEADERBOARD ==================== */}
-            {activePage === "leaderboard" && (
-              <section>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.9rem" }}>
-                  <h2>Live Firebase <span className="gradient-text">Student Leaderboard</span></h2>
-                  <div style={{ display: "flex", gap: "0.4rem" }}>
-                    <button className={lbFilter === "score" ? "btn-primary" : "btn-secondary"} onClick={() => setLbFilter("score")}>Overall Score</button>
-                    <button className={lbFilter === "learnScore" ? "btn-primary" : "btn-secondary"} onClick={() => setLbFilter("learnScore")}>Learn Score</button>
-                    <button className={lbFilter === "codeScore" ? "btn-primary" : "btn-secondary"} onClick={() => setLbFilter("codeScore")}>Code Score</button>
-                  </div>
-                </div>
-
-                {!user && (
-                  <div className="card" style={{ marginBottom: "0.9rem", borderColor: "#60a5fa", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: "0.85rem" }}>🔒 You are viewing the Leaderboard in <b>Guest Mode</b>. Sign in to sync and view your rank!</span>
-                    <button className="btn-primary" onClick={() => setShowSignInModal(true)}>Sign in</button>
-                  </div>
-                )}
-
-                <table className="lb-table">
-                  <thead>
-                    <tr>
-                      <th>Rank</th>
-                      <th>Authenticated Student</th>
-                      <th>Total Score</th>
-                      <th>Learn Score</th>
-                      <th>Code Arena Score</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {(() => {
-                      const rows = [...leaderboardRows];
-                      if (user && !rows.some((r) => r.id === user.uid)) {
-                        rows.push({
-                          id: user.uid,
-                          name: user.displayName,
-                          score: profile.score || 0,
-                          learnScore: profile.learnScore || 0,
-                          codeScore: profile.codeScore || 0
-                        });
-                      }
-                      return rows
-                        .sort((a, b) => (b[lbFilter] || 0) - (a[lbFilter] || 0))
-                        .map((r, idx) => {
-                          const isMe = Boolean(user && r.id === user.uid);
-                          return (
-                            <tr key={r.id || idx} className={isMe ? "me-row" : ""}>
-                              <td>#{idx + 1}</td>
-                              <td>{r.name || "Student"} {isMe && <span className="badge badge-easy">You (Signed In ✓)</span>}</td>
-                              <td><strong>{r.score || 0} pts</strong></td>
-                              <td>{r.learnScore || 0} pts</td>
-                              <td>{r.codeScore || 0} pts</td>
-                            </tr>
-                          );
-                        });
-                    })()}
-                  </tbody>
-                </table>
-              </section>
-            )}
-
-            {/* ==================== 10. CERTIFICATIONS ==================== */}
-            {activePage === "certified" && (
-              <section>
-                <h2 style={{ marginBottom: "0.8rem" }}>225+ Free <span className="gradient-text">Certifications</span></h2>
-                <div className="single-col-list">
-                  {(window.CERTIFICATION_CATALOG || [
-                    { id: "c1", provider: "freeCodeCamp", category: "Programming", courseTitle: "JavaScript Algorithms and Data Structures", url: "https://www.freecodecamp.org" },
-                    { id: "c2", provider: "Google Cloud", category: "AI & ML", courseTitle: "Introduction to Generative AI", url: "https://www.cloudskillsboost.google" }
-                  ]).slice(0, 25).map((c) => (
-                    <div key={c.id} className="single-row-item">
-                      <div>
-                        <span className="badge badge-info">{c.provider} • {c.category}</span>
-                        <h4 style={{ marginTop: "0.2rem" }}>{c.courseTitle}</h4>
-                      </div>
-                      <a href={c.url} target="_blank" rel="noreferrer" className="btn-primary">Go to Course ↗</a>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* ==================== 11. MY CERTS ==================== */}
-            {activePage === "mycerts" && (
-              <section>
-                <h2 style={{ marginBottom: "0.8rem" }}>My <span className="gradient-text">Certificates &amp; LinkedIn AI</span></h2>
-                {!user ? (
-                  <div className="card" style={{ borderColor: "#f59e0b", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span>🔒 Please <b>Sign in</b> to view or upload your personal certificates.</span>
-                    <button className="btn-primary" onClick={() => setShowSignInModal(true)}>Sign in</button>
-                  </div>
-                ) : (
-                  <div className="card">
-                    <p style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>
-                      Signed in as <b>{user.displayName}</b> — Saved Certificates: {profile.uploadedCerts.length}
-                    </p>
-                  </div>
-                )}
-              </section>
-            )}
-
-            {/* ==================== 12. MY ACTIVITY ==================== */}
-            {activePage === "vault" && (
-              <section>
-                <h2 style={{ marginBottom: "0.8rem" }}>My <span className="gradient-text">Activity &amp; Score Dashboard</span></h2>
-                {!user ? (
-                  <div className="card" style={{ borderColor: "#f59e0b", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span>🔒 You are currently signed out. Sign in to view your personal points, solved code, and quiz history!</span>
-                    <button className="btn-primary" onClick={() => setShowSignInModal(true)}>Sign in</button>
-                  </div>
-                ) : (
-                  <>
-                    <div className="stats-strip">
-                      <div className="stat-card"><div className="stat-val gradient-text">{profile.score} pts</div><div>Total Score</div></div>
-                      <div className="stat-card"><div className="stat-val gradient-text">{profile.quizzesAttended.length}</div><div>Quizzes Scored</div></div>
-                      <div className="stat-card"><div className="stat-val gradient-text">{profile.solvedPrograms.length}</div><div>Code Programs</div></div>
-                      <div className="stat-card"><div className="stat-val gradient-text">{profile.topicsLearned.length}</div><div>Topics Completed</div></div>
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                      <div className="card">
-                        <div style={{ display: "flex", gap: "0.4rem", marginBottom: "0.7rem" }}>
-                          <button className={activityTab === "quizzes" ? "btn-primary" : "btn-secondary"} onClick={() => setActivityTab("quizzes")}>Quizzes</button>
-                          <button className={activityTab === "code" ? "btn-primary" : "btn-secondary"} onClick={() => setActivityTab("code")}>Code</button>
-                        </div>
-                        <div className="fixed-pane-scroll">
-                          {activityTab === "quizzes" && profile.quizzesAttended.map((q, i) => (
-                            <div key={i} className="single-row-item" onClick={() => setInspectedItem(q)} style={{ cursor: "pointer" }}>
-                              <span>{q.title}</span>
-                              <span className="badge badge-easy">+{q.points} pts</span>
-                            </div>
-                          ))}
-                          {activityTab === "code" && profile.solvedPrograms.map((sp, i) => (
-                            <div key={i} className="single-row-item" onClick={() => setInspectedItem(sp)} style={{ cursor: "pointer" }}>
-                              <span>💻 {sp.title}</span>
-                              <span className="badge badge-info">{sp.lang}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="card">
-                        <strong style={{ color: "#34d399" }}>🔍 Inspector</strong>
-                        {inspectedItem ? (
-                          <div style={{ marginTop: "0.6rem" }}>
-                            <h4>{inspectedItem.title}</h4>
-                            {inspectedItem.code && <pre className="code-block"><code>{inspectedItem.code}</code></pre>}
-                          </div>
-                        ) : (
-                          <p style={{ fontSize: "0.84rem", color: "var(--text-muted)", marginTop: "0.5rem" }}>Click any item on the left to inspect it.</p>
-                        )}
-                      </div>
-                    </div>
-                  </>
-                )}
-              </section>
-            )}
-          </main>
-        </div>
-      );
-    }
-
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(<App />);
   </script>
 </body>
 </html>
